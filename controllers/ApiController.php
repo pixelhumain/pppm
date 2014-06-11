@@ -10,7 +10,7 @@
 class ApiController extends Controller {
 
     const moduleTitle = "API Sondage";
-    public static $moduleKey = "survey";
+    public static $moduleKey = "pppm";
     
     public $sidebar1 = array(
             array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggle('scenario')","hide"=>true, "iconClass"=>"fa fa-list","generate"=>true),
@@ -56,19 +56,12 @@ class ApiController extends Controller {
         return parent::beforeAction($action);
     }
 
-    /**
-     * List all the latest observations
-     * @return [json Map] list
-     */
-	public function actionIndex() 
-	{
-	    $this->render("../../../../modules/api/views/index", array("path"=>'application.modules.'.$this::$moduleKey.'.views.api.') );
-	}
     public function actions()
     {
         return array(
-            'login'             =>'application.controllers.user.LoginAction',
-            'saveuser'          =>'application.controllers.user.SaveUserAction',
+            'index'             => 'application.components.api.controllers.IndexAction',
+            'login'             => 'application.controllers.user.LoginAction',
+            'saveuser'          => 'application.controllers.user.SaveUserAction',
             'communect'         => 'application.controllers.user.CommunectAction',
             'getuser'           => 'application.controllers.user.GetUserAction',
             'getpeopleby'       => 'application.controllers.user.GetPeopleByAction',

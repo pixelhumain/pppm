@@ -18,8 +18,8 @@ class PppmModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'survey.models.*',
-			'survey.components.*',
+			'pppm.models.*',
+			'pppm.components.*',
 		));
 	}
 
@@ -40,7 +40,7 @@ class PppmModule extends CWebModule
 	{
 	    if ($this->_assetsUrl === null)
 	        $this->_assetsUrl = Yii::app()->getAssetManager()->publish(
-	            Yii::getPathOfAlias('survey.assets') );
+	            Yii::getPathOfAlias('pppm.assets') );
 	    return $this->_assetsUrl;
 	}
 }

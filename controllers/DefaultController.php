@@ -10,7 +10,7 @@
 class DefaultController extends Controller {
 
     const moduleTitle = "Module Sondage";
-    public static $moduleKey = "survey";
+    public static $moduleKey = "pppm";
 
     public $keywords = "connecter, réseau, sociétal, citoyen, société, regrouper, commune, communecter, social";
     public $description = "Communecter : Connecter a sa commune, reseau societal, le citoyen au centre de la société.";
@@ -45,7 +45,12 @@ class DefaultController extends Controller {
       $where["cp"] = $_GET["cp"];
     $list = PHDB::find(PHType::TYPE_SURVEYS, $where );
     $user = ( isset( Yii::app()->session["userId"])) ? PHDB::findOne (PHType::TYPE_CITOYEN, array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
-	  $this->render( "mixitup", array( "list" => $list,"title"=>$title,"where"=>$where,"user"=>$user )  );
+    $uniqueVoters = PHDB::count( PHType::TYPE_CITOYEN, array("applications.survey"=>array('$exists'=>true)) );
+	  $this->render( "mixitup", array(  "list" => $list,
+                                      "title"=>$title,
+                                      "where"=>$where,
+                                      "user"=>$user,
+                                      "uniqueVoters"=>$uniqueVoters  )  );
 	}
   public function actionEntries($surveyId) 
   {
