@@ -96,18 +96,25 @@ class DefaultController extends Controller {
     $where["survey"] = $survey;
     $voteDownCount = (isset($survey[ActionType::ACTION_VOTE_DOWN."Count"])) ? $survey[ActionType::ACTION_VOTE_DOWN."Count"] : 0;
     $voteAbstainCount = (isset($survey[ActionType::ACTION_VOTE_ABSTAIN."Count"])) ? $survey[ActionType::ACTION_VOTE_ABSTAIN."Count"] : 0;
+    $voteUnclearCount = (isset($survey[ActionType::ACTION_VOTE_UNCLEAR."Count"])) ? $survey[ActionType::ACTION_VOTE_UNCLEAR."Count"] : 0;
+    $voteMoreInfoCount = (isset($survey[ActionType::ACTION_VOTE_MOREINFO."Count"])) ? $survey[ActionType::ACTION_VOTE_MOREINFO."Count"] : 0;
     $voteUpCount = (isset($survey[ActionType::ACTION_VOTE_UP."Count"])) ? $survey[ActionType::ACTION_VOTE_UP."Count"] : 0;
-    $totalVotes = $voteDownCount+$voteAbstainCount+$voteUpCount;
-    $oneVote = 100/$totalVotes;
+    $totalVotes = $voteDownCount+$voteAbstainCount+$voteUpCount+$voteUnclearCount+$voteMoreInfoCount;
+    $oneVote = ($totalVotes!=0) ? 100/$totalVotes:1;
     $voteDownCount = $voteDownCount * $oneVote ;
     $voteAbstainCount = $voteAbstainCount * $oneVote;
     $voteUpCount = $voteUpCount * $oneVote;
+    $voteUnclearCount = $voteUnclearCount * $oneVote;
+    $voteMoreInfoCount = $voteMoreInfoCount * $oneVote;
 
     echo CJSON::encode( array( "title" => "Repartition de  votes : ".$survey["name"] ,
                                "content" => $this->renderPartial( "graph", array( "name" => $survey["name"],
                                                                                   "voteDownCount" => $voteDownCount,
                                                                                   "voteAbstainCount" => $voteAbstainCount,
-                                                                                  "voteUpCount" => $voteUpCount), 
+                                                                                  "voteUpCount" => $voteUpCount,
+                                                                                  "voteUnclearCount" => $voteUnclearCount,
+                                                                                  "voteMoreInfoCount" => $voteMoreInfoCount,
+                                                                                  ), 
                                                                   true)));
   }
   

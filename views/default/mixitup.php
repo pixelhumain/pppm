@@ -14,7 +14,7 @@ $commentActive = true;
 
 <style type="text/css">
   body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/cloud.jpg") repeat;}
-  .connect{ opacity: 0.9;background-color: #000; margin-bottom: 10px;border:1px solid #3399FF;width: 100%;padding: 10px }
+  .connect{border-radius: 8px; opacity: 0.9;background-color: #182129; margin-bottom: 10px;border:1px solid #3399FF;width: 100%;padding: 10px }
   button.filter,button.sort{color:#000;}
   a.btn{margin:3px;}
   .mix{border-radius: 8px;}
@@ -26,17 +26,17 @@ $commentActive = true;
   /*.rightlinks a.btn{background-color: beige;border: 1px solid beige;}*/
   a.btn.alertlink{background-color:red;color:white;border: 1px solid red;}
   a.btn.golink{background-color:green;color:white;border: 1px solid green;}
-  a.btn.voteUp{background-color: green;border: 1px solid green;}
+  a.btn.voteUp{background-color: #93C22C;border: 1px solid green;}
   a.btn.voteUnclear{background-color: yellow;border: 1px solid yellow;}
-  a.btn.voteMoreInfo{background-color: gray;border: 1px solid gray;}
+  a.btn.voteMoreInfo{background-color: #789289;border: 1px solid #789289;}
   a.btn.voteAbstain{background-color: white;border: 1px solid white;}
-  a.btn.voteDown{background-color: red;border: 1px solid red;}
+  a.btn.voteDown{background-color: #db254e;border: 1px solid #db254e;}
 </style>
 <section class="mt80 stepContainer">
 
-  <div class="connect">
+  <div class="connect" >
     <div style="color:#3399FF;float:left;font-size: x-large;font-weight: bold">
-      <?php echo $this::moduleTitle." : ".$title;
+      <?php echo "<a href='/ph/".$this->module->id."'>".$this::moduleTitle."</a> : <a href='/ph/".$this->module->id."'>".$title."</a>";
        if(isset($_GET["cp"])) echo " ".$_GET["cp"]?>
        <div style="font-size:x-small;font-weight: normal;color:white;">Nombres de votants inscrit : <?php echo $uniqueVoters?></div>
     </div>
@@ -59,7 +59,7 @@ $commentActive = true;
   </div>
 <?php } ?>
 
-<div class="controls">
+<div class="controls" style="border-radius: 8px;">
   <?php
   if($where["type"]=="entry" && isset( Yii::app()->session["userId"])){?>
   <a href="#voterloiDescForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" ><i class="fa fa-signout"></i>Voter les propositions</a>
@@ -110,9 +110,9 @@ $commentActive = true;
       
 
       if ($value["type"]=="survey" && $count)
-        $link = '<a class="titleMix '.$meslois.'" href="'.Yii::app()->createUrl("/survey/default/entries/surveyId/".(string)$value["_id"]).'">'.$name.' ('.$count.')</a>' ;
+        $link = '<a class="titleMix '.$meslois.'" href="'.Yii::app()->createUrl("/".$this->module->id."/default/entries/surveyId/".(string)$value["_id"]).'">'.$name.' ('.$count.')</a>' ;
       else if ($value["type"]=="entry")
-        $link = '<a class="titleMix '.$meslois.'" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/entry/surveyId/".(string)$value["_id"]).'\')" href="javascript:;">'.$name.'</a>' ;
+        $link = '<a class="titleMix '.$meslois.'" onclick="entryDetail(\''.Yii::app()->createUrl("/".$this->module->id."/default/entry/surveyId/".(string)$value["_id"]).'\')" href="javascript:;">'.$name.'</a>' ;
       
       //$infoslink bring visual detail about the entry
       $infoslink = "";
@@ -196,9 +196,9 @@ $commentActive = true;
       $content = ($value["type"]=="entry") ? "".$value["message"]:"";?>
     <?php
       $leftLinks = ($value["type"]=="entry") ? "<div class='leftlinks'>".$linkVoteUp." ".$linkVoteUnclear." ".$linkVoteAbstain." ".$linkVoteMoreInfo." ".$linkVoteDown."</div>" : "";
-      $graphLink = ($totalVote) ?' <a class="btn" onclick="entryDetail(\''.Yii::app()->createUrl("/survey/default/graph/surveyId/".(string)$value["_id"]).'\',\'graph\')" href="javascript:;"><i class="fa fa-th-large"></i></a> ' : '';
-      $moderatelink = (  $where["type"]=="entry" && $isModerator && isset( $value["applications"][$this::$moduleKey]["cleared"] ) && $value["applications"][$this::$moduleKey]["cleared"] == false ) ? "<a class='btn golink' href='javascript:moderateEntry(\"".$value["_id"]."\",1)'><i class='fa fa-plus ' ></i></a><a class='btn alertlink' href='javascript:moderateEntry(\"".$value["_id"]."\",0)'><i class='fa fa-minus ' ></i></a>" :"";
-      $rightLinks = (  isset( $value["applications"][$this::$moduleKey]["cleared"] ) && $value["applications"][$this::$moduleKey]["cleared"] == false ) ? $moderatelink : $graphLink.$linkComment.$infoslink ;
+      $graphLink = ($totalVote) ?' <a class="btn" onclick="entryDetail(\''.Yii::app()->createUrl("/".$this->module->id."/default/graph/surveyId/".(string)$value["_id"]).'\',\'graph\')" href="javascript:;"><i class="fa fa-th-large"></i></a> ' : '';
+      $moderatelink = (  $where["type"]=="entry" && $isModerator && isset( $value["applications"][$this->module->id]["cleared"] ) && $value["applications"][$this->module->id]["cleared"] == false ) ? "<a class='btn golink' href='javascript:moderateEntry(\"".$value["_id"]."\",1)'><i class='fa fa-plus ' ></i></a><a class='btn alertlink' href='javascript:moderateEntry(\"".$value["_id"]."\",0)'><i class='fa fa-minus ' ></i></a>" :"";
+      $rightLinks = (  isset( $value["applications"][$this->module->id]["cleared"] ) && $value["applications"][$this->module->id]["cleared"] == false ) ? $moderatelink : $graphLink.$infoslink ;
       $rightLinks = ($value["type"]=="entry") ? "<div class='rightlinks'>".$rightLinks."</div>" : "";
       $ordre = $voteUpCount-$voteDownCount;
       $created = (isset($value["created"])) ? $value["created"] : 0; 
@@ -313,7 +313,7 @@ $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
              "collection":"surveys",
              "action" : action 
              };
-        testitpost(null,'/ph/<?php echo $this::$moduleKey?>/api/addaction',params,function(data){
+        testitpost(null,'/ph/<?php echo $this->module->id?>/api/addaction',params,function(data){
         window.location.reload();
         });
     }
@@ -339,16 +339,16 @@ $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
       params = { "survey" : id , 
             "action" : action , 
               "app" : "survey"};
-      testitpost("moderateEntryResult",'/ph/<?php echo $this::$moduleKey?>/api/moderateentry',params,function(){
+      testitpost("moderateEntryResult",'/ph/<?php echo $this->module->id?>/api/moderateentry',params,function(){
         window.location.reload();
       });
     }
 </script>
 <?php
 if($where["type"]=="entry"){
-  $this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.proposerloi',array("survey"=>$where["survey"]));
-  $this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.voterloiDesc');
+  $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.'.views.default.modals.proposerloi',array("survey"=>$where["survey"]));
+  $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.'.views.default.modals.voterloiDesc');
   if($commentActive)
-    $this->renderPartial('application.modules.'.$this::$moduleKey.'.views.default.modals.comments');
+    $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.'.views.default.modals.comments');
 }
 ?>

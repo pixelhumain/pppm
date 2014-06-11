@@ -32,7 +32,9 @@ function setUpGraph(){
 	        data: [
 	            [ 'Vote Pour',   <?php echo $voteUpCount?> ],
 	            [ 'Vote Contre',       <?php echo $voteDownCount?> ],
-	            [ 'Abstention',    <?php echo $voteAbstainCount?> ]
+	            [ 'Abstention',    <?php echo $voteAbstainCount?> ],
+	            [ 'Pas Clair',    <?php echo $voteUnclearCount?> ],
+	            [ "Plus d'infos",    <?php echo $voteMoreInfoCount?> ]
 	        ]
 	    }]
 	});

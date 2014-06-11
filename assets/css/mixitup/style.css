@@ -10,7 +10,7 @@ body, button{
 
 .controls{
   padding: 10px;
-  background: #000;
+  background: #182129;
   opacity: 0.9;
   color: #eee;
   margin-bottom: 5px;
@@ -53,7 +53,7 @@ button + label{
 .mixcontainer .mix {
     display: none;
     border: 1px solid #3399FF;
-    background-color: #000;
+    background-color: #182129;
     opacity: 0.9;
     padding:10px;
     margin-bottom:5px;
