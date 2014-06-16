@@ -166,7 +166,7 @@ $commentActive = true;
                         && isset($value[ActionType::ACTION_VOTE_DOWN]) 
                         && is_array($value[ActionType::ACTION_VOTE_DOWN]) 
                         && in_array(Yii::app()->session["userId"], $value[ActionType::ACTION_VOTE_DOWN])) ? "active":"";
-      $voteDownCount = (isset($value[ActionType::ACTION_VOTE_DOWN."Count"])) ? -$value[ActionType::ACTION_VOTE_DOWN."Count"] : 0 ;
+      $voteDownCount = (isset($value[ActionType::ACTION_VOTE_DOWN."Count"])) ? $value[ActionType::ACTION_VOTE_DOWN."Count"] : 0 ;
       $hrefDown = (isset( Yii::app()->session["userId"]) && empty($voteDownActive)) ? "javascript:addaction('".(string)$value["_id"]."','".ActionType::ACTION_VOTE_DOWN."')" : "";
       $classDown = $voteDownActive." ".ActionType::ACTION_VOTE_DOWN." ".$value["_id"].ActionType::ACTION_VOTE_DOWN;
       $iconDown = "fa-thumbs-down";
@@ -200,7 +200,7 @@ $commentActive = true;
       $moderatelink = (  $where["type"]=="entry" && $isModerator && isset( $value["applications"][$this->module->id]["cleared"] ) && $value["applications"][$this->module->id]["cleared"] == false ) ? "<a class='btn golink' href='javascript:moderateEntry(\"".$value["_id"]."\",1)'><i class='fa fa-plus ' ></i></a><a class='btn alertlink' href='javascript:moderateEntry(\"".$value["_id"]."\",0)'><i class='fa fa-minus ' ></i></a>" :"";
       $rightLinks = (  isset( $value["applications"][$this->module->id]["cleared"] ) && $value["applications"][$this->module->id]["cleared"] == false ) ? $moderatelink : $graphLink.$infoslink ;
       $rightLinks = ($value["type"]=="entry") ? "<div class='rightlinks'>".$rightLinks."</div>" : "";
-      $ordre = $voteUpCount-$voteDownCount;
+      $ordre = $voteUpCount+$voteDownCount;
       $created = (isset($value["created"])) ? $value["created"] : 0; 
       $blocks .= ' <div class="mix '.$avoter.' '.$meslois.' '.$followingEntry.' '.$tags.' '.$cp.'" data-vote="'.$ordre.'"  data-time="'.$created.'" style="display:inline-blocks"">'.
                     $link.'<br/>'.
