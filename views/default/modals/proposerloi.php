@@ -51,7 +51,7 @@ initT['proposerloiModalsInit'] = function(){
 
      $.ajax({
         type: "POST",
-        url: '/ph/<?php echo $this::$moduleKey?>/api/saveSession',
+        url: '<?php echo Yii::app()->createUrl($this->module->id."/api/saveSession")?>',
         data: params,
         success: function(data){
           if(data.result){

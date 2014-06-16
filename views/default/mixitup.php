@@ -36,14 +36,14 @@ $commentActive = true;
 
   <div class="connect" >
     <div style="color:#3399FF;float:left;font-size: x-large;font-weight: bold">
-      <?php echo "<a href='/ph/".$this->module->id."'>".$this::moduleTitle."</a> : <a href='/ph/".$this->module->id."'>".$title."</a>";
+      <?php echo "<a href='".Yii::app()->createUrl($this->module->id)."'>".$this::moduleTitle."</a> : <a href='".Yii::app()->createUrl($this->module->id)."'>".$title."</a>";
        if(isset($_GET["cp"])) echo " ".$_GET["cp"]?>
        <div style="font-size:x-small;font-weight: normal;color:white;">Nombres de votants inscrit : <?php echo $uniqueVoters?></div>
     </div>
     <div style="float:right;">
     <?php if( isset( Yii::app()->session["userId"])){?>
       <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?> <?php if($where["type"]=="entry" && $isModerator){ ?><span class="badge badge-info">ADMIN</span><?php } ?></a>
-      <a href="/ph/site/logout" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Logout</a>
+      <a href="<?php echo Yii::app()->createUrl('/site/logout')?>" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Logout</a>
     <?php } else {?>
       <a href="#loginForm" class="btn " role="button" data-toggle="modal" title="connexion" ><i class="fa fa-signin"></i>Se Connecter pour voter</a>
     <?php } ?>
@@ -313,7 +313,7 @@ $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
              "collection":"surveys",
              "action" : action 
              };
-        testitpost(null,'/ph/<?php echo $this->module->id?>/api/addaction',params,function(data){
+        testitpost(null,'<?php echo Yii::app()->createUrl($this->module->id."/api/addaction")?>',params,function(data){
         window.location.reload();
         });
     }
@@ -339,7 +339,7 @@ $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
       params = { "survey" : id , 
             "action" : action , 
               "app" : "survey"};
-      testitpost("moderateEntryResult",'/ph/<?php echo $this->module->id?>/api/moderateentry',params,function(){
+      testitpost("moderateEntryResult",'<?php echo Yii::app()->createUrl($this->module->id."/api/moderateentry")?>',params,function(){
         window.location.reload();
       });
     }
