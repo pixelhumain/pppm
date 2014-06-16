@@ -26,12 +26,12 @@
 			    	   "email" : $("#sendMessageemail").val() , 
 			    	   "msg" : $("#sendMessagemsg").val() 
 			    	   };
-					testitpost("sendMessageResult",'/ph/egpc/api/sendMessage',params);
+					testitpost("sendMessageResult",baseUrl+'/egpc/api/sendMessage',params);
 				}
 				function setPeople(){
 					$("#sendMessageemail").val("");
 					$.ajax({
-					    url:'/ph/egpc/api/getPeopleBy',
+					    url:baseUrl+'/egpc/api/getPeopleBy',
 					    type:"POST",
 					    data:{ "groupname":$("#sendMessagePeople").val()},
 					    datatype : "json",

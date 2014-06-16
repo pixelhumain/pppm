@@ -16,7 +16,7 @@
 					params = { "email" : $("#emailCommunect").val() , 
 					    	   "cp" : $("#cpCommunect").val()
 					    	};
-					testitpost("communectResult",'/ph/<?php echo $this->module->id?>/api/communect',params);
+					testitpost("communectResult",baseUrl+'/<?php echo $this->module->id?>/api/communect',params);
 				}
 			</script>
 			
@@ -42,7 +42,7 @@
 					    	   "loginRegister" :1,
 					    	   "app":"<?php echo $this->module->id?>"
 					    	};
-					testitpost("loginResult",'/ph/<?php echo $this->module->id?>/api/login',params);
+					testitpost("loginResult",baseUrl+'/<?php echo $this->module->id?>/api/login',params);
 					
 				}
 			</script>
@@ -74,7 +74,7 @@
 					    	   "pwd":$("#pwdSaveUser").val() ,
 					    	   "phoneNumber" : $("#phoneNumberSaveUser").val(),
 					    		"app" : "<?php echo $this->module->id?>"};
-					testitpost("createUserResult",'/ph/<?php echo $this->module->id?>/api/saveUser',params);
+					testitpost("createUserResult",baseUrl+'/<?php echo $this->module->id?>/api/saveUser',params);
 				}
 			</script>
 		</div>
@@ -90,7 +90,7 @@
 			<div id="getUserResult" class="result fss"></div>
 			<script>
 				function getUser(){
-					testitget("getUserResult",'/ph/<?php echo $this->module->id?>/api/getUser/email/'+$("#getUseremail").val());
+					testitget("getUserResult",baseUrl+'/<?php echo $this->module->id?>/api/getUser/email/'+$("#getUseremail").val());
 				}
 				
 			</script>
@@ -109,11 +109,11 @@
 			<script>
 				function getpeopleby(){
 					params = { "cp" : $("#postalcodegetPeople").val() };
-					testitpost("getPeopleResult",'/ph/<?php echo $this->module->id?>/api/getpeopleby',params);
+					testitpost("getPeopleResult",baseUrl+'/<?php echo $this->module->id?>/api/getpeopleby',params);
 				}
 				function countpeopleby(){
 					params = { "cp" : $("#postalcodegetPeople").val() };
-					testitpost("getPeopleResult",'/ph/<?php echo $this->module->id?>/api/getpeopleby/count/1',params);
+					testitpost("getPeopleResult",baseUrl+'/<?php echo $this->module->id?>/api/getpeopleby/count/1',params);
 				}
 			</script>
 		</div>
@@ -131,7 +131,7 @@
 			<script>
 				function inviteUser(){
 					params = { "email" : $("#inviteUseremail").val() };
-					testitpost("inviteUserResult",'/ph/<?php echo $this->module->id?>/api/inviteUser',params);
+					testitpost("inviteUserResult",baseUrl+'/<?php echo $this->module->id?>/api/inviteUser',params);
 				}
 				
 			</script>
@@ -148,10 +148,10 @@
 			<div id="getnodebyResult" class="result fss"></div>
 			<script>
 				function getnodeby(){
-					testitget("getnodebyResult",'/ph/<?php echo $this->module->id?>/api/getnodeby/type/'+$("#getnodebyType").val());
+					testitget("getnodebyResult",baseUrl+'/<?php echo $this->module->id?>/api/getnodeby/type/'+$("#getnodebyType").val());
 				}
 				function countgetnodeby(){
-					testitget("getnodebyResult",'/ph/<?php echo $this->module->id?>/api/getnodeby/type/'+$("#getnodebyType").val()+'/count/1');
+					testitget("getnodebyResult",baseUrl+'/<?php echo $this->module->id?>/api/getnodeby/type/'+$("#getnodebyType").val()+'/count/1');
 				}
 			</script>
 		</div>

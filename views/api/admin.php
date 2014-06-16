@@ -26,7 +26,7 @@
 			function addmoderatorEntry(){
 				params = {  "id" : $("#citizenaddmoderatorEntry").val() , 
 				    		"app" : "survey"};
-				testitpost("addmoderatorEntryResult",'/ph/<?php echo $this::$moduleKey?>/api/addmoderator',params);
+				testitpost("addmoderatorEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/addmoderator',params);
 			}
 			
 		</script>
@@ -60,7 +60,7 @@
 					params = { "survey" : $("#sessionmoderateEntry").val() , 
 								"action" : $("#moderateAction").val() , 
 					    		"app" : "survey"};
-					testitpost("moderateEntryResult",'/ph/<?php echo $this::$moduleKey?>/api/moderateentry',params);
+					testitpost("moderateEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/moderateentry',params);
 				}
 				function getEntry(){
 					params = { "where" : { 
@@ -70,7 +70,7 @@
 					    	   	},
 					    	   	"collection":"surveys"
 					    	};
-					testitpost("moderateEntryResult",'/ph/<?php echo $this::$moduleKey?>/api/getby',params);
+					testitpost("moderateEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/getby',params);
 				}
 			</script>
 		</div>

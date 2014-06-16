@@ -48,6 +48,7 @@ class ApiController extends Controller {
                 "children"=> array(
                     array( "label"=>"sendMessage","href"=>"javascript:;","onclick"=>"scrollTo('#blocksendMessage')")
                 )),
+           
         );
     public $percent = 60; //TODO link it to unit test
     protected function beforeAction($action)
@@ -72,7 +73,6 @@ class ApiController extends Controller {
             'savesession'       => 'application.controllers.survey.SaveSessionAction',  
             'moderateentry'     => 'application.controllers.survey.ModerateAction',  
             'getby'             => 'application.controllers.generic.GetByAction',  
-
             'sendmessage'       => 'application.controllers.messages.SendMessageAction',  
         );
     }

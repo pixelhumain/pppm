@@ -24,7 +24,7 @@
 					    	   "cp" : $("#postalcodesaveSession").val(),
 					    	   "type" : "survey",
 					    	   "app" : "survey" };
-					testitpost("saveSessionResult",'/ph/<?php echo $this::$moduleKey?>/api/saveSession',params);
+					testitpost("saveSessionResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/saveSession',params);
 				}
 				function getSession(){
 					params = { "where" : { 
@@ -34,7 +34,7 @@
 					    	   	},
 					    	   	"collection":"surveys"
 					    	};
-					testitpost("saveSessionResult",'/ph/<?php echo $this::$moduleKey?>/api/getby',params);
+					testitpost("saveSessionResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/getby',params);
 				}
 			</script>
 		</div>
@@ -74,7 +74,7 @@
 					    	   "cp" : $("#postalcodesaveGroup").val() , 
 					    	   "type" : "entry",
 					    		"app" : "survey"};
-					testitpost("addEntryResult",'/ph/<?php echo $this::$moduleKey?>/api/saveSession',params);
+					testitpost("addEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/saveSession',params);
 				}
 				function getEntry(){
 					params = { "where" : { 
@@ -84,7 +84,7 @@
 					    	   	},
 					    	   	"collection":"surveys"
 					    	};
-					testitpost("addEntryResult",'/ph/<?php echo $this::$moduleKey?>/api/getby',params);
+					testitpost("addEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/getby',params);
 				}
 			</script>
 		</div>
@@ -125,7 +125,7 @@
 						params.where[op] = tagList;
 						params.where["$and"] = [{"type":type}];
 					}
-					testitpost("getbyResult",'/ph/<?php echo $this::$moduleKey?>/api/getby',params);
+					testitpost("getbyResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/getby',params);
 				}
 			</script>
 		</div>
@@ -174,7 +174,7 @@
 			    	   "collection":"surveys",
 			    	   "action" : $("#actionSurvey").val() 
 			    	   };
-					testitpost("addactionResult",'/ph/<?php echo $this::$moduleKey?>/api/addaction',params);
+					testitpost("addactionResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/addaction',params);
 				}
 
 				function unaddaction(){
@@ -185,7 +185,7 @@
 			    	   "unset" : true,
 			    	   "action" : $("#actionSurvey").val() 
 			    	   };
-					testitpost("addactionResult",'/ph/<?php echo $this::$moduleKey?>/api/addaction',params);
+					testitpost("addactionResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/addaction',params);
 				}
 
 				function getIncByAction(){
@@ -194,7 +194,7 @@
 			    	   "collection":"surveys",
 			    	   "fields" : [$("#actionSurvey").val()] 
 			    	   };
-					testitpost("addactionResult",'/ph/<?php echo $this::$moduleKey?>/api/getactionvalue',params);
+					testitpost("addactionResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/getactionvalue',params);
 				}
 
 			</script>
