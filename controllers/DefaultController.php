@@ -9,7 +9,7 @@
  */
 class DefaultController extends Controller {
 
-    const moduleTitle = "Module Sondage";
+    const moduleTitle = "Votes St pierre & Miquelon";
     public static $moduleKey = "pppm";
 
     public $keywords = "connecter, réseau, sociétal, citoyen, société, regrouper, commune, communecter, social";
@@ -24,6 +24,7 @@ class DefaultController extends Controller {
     );
     //login social setting 
     public $hasSocial = false;
+    public $loginRegister = true;
 
     protected function beforeAction($action)
   	{
