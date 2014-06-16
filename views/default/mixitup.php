@@ -31,9 +31,10 @@ $commentActive = true;
   a.btn.voteMoreInfo{background-color: #789289;border: 1px solid #789289;}
   a.btn.voteAbstain{background-color: white;border: 1px solid white;}
   a.btn.voteDown{background-color: #db254e;border: 1px solid #db254e;}
+  .step{ background-color: #182129;  opacity: 0.9;}
 </style>
 <section class="mt80 stepContainer">
-
+  <div class=" home ">
   <div class="connect" >
     <div style="color:#3399FF;float:left;font-size: x-large;font-weight: bold">
       <?php echo "<a href='".Yii::app()->createUrl($this->module->id)."'>".$this::moduleTitle."</a> : <a href='".Yii::app()->createUrl($this->module->id)."'>".$title."</a>";
@@ -243,6 +244,43 @@ $commentActive = true;
 <div id="mixcontainer" class="mixcontainer">
   <?php echo $blocks?>
 </div>
+</div>
+
+<div class="step why hidden">
+  <div class="fr">
+        <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
+      </div>
+  Because We're happy<br><br><br><br><br><br>
+  </div>
+
+  <div class="step what hidden">
+    <div class="fr">
+        <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
+      </div>
+  Come and have fun<br><br><br><br><br><br>
+  </div>
+
+  <div class="step how hidden">
+    <div class="fr">
+        <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
+      </div>
+  Come and get some<br><br><br><br><br><br>
+  </div>
+
+  <div class="step who hidden">
+    <div class="fr">
+        <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
+      </div>
+  All night long<br><br><br><br><br><br>
+  </div>
+
+  <div class="step when hidden">
+    <div class="fr">
+        <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
+      </div>
+  Get up Stand up<br><br><br><br><br><br>
+  </div>
+
 </section>
 
 <script type="text/javascript">
@@ -251,6 +289,7 @@ $container = $('#mixcontainer'), // Cache the MixItUp container
 $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
 
   $(function(){
+
     $container.mixItUp({
         load: {sort: 'vote:desc'},
         animation: {
@@ -343,6 +382,13 @@ $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
       testitpost("moderateEntryResult",'<?php echo Yii::app()->createUrl($this->module->id."/api/moderateentry")?>',params,function(){
         window.location.reload();
       });
+    }
+    activeView = ".home";
+    function hideShow(ids,parent=".step")
+    {
+      $(activeView).addClass("hidden");
+      $(ids).removeClass("hidden");
+      activeView = ids;
     }
 </script>
 <?php
