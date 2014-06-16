@@ -2,7 +2,6 @@
 $cs = Yii::app()->getClientScript();
 $cs->registerCssFile($this->module->assetsUrl. '/css/mixitup/reset.css');
 $cs->registerCssFile($this->module->assetsUrl. '/css/mixitup/style.css');
-$cs->registerScriptFile($this->module->assetsUrl.'/js/jquery.sparkline.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile('http://code.highcharts.com/highcharts.js' , CClientScript::POS_END);
 $cs->registerScriptFile('http://code.highcharts.com/modules/exporting.js' , CClientScript::POS_END);
 $cs->registerScriptFile('http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.5' , CClientScript::POS_END);
@@ -13,7 +12,7 @@ $commentActive = true;
 ?>
 
 <style type="text/css">
-  body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/frings.jpg") repeat;}
+  body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/<?php  echo (PH::notlocalServer()) ? 'frings.jpg' : 'cloud.jpg'?>") repeat;}
   .connect{border-radius: 8px; opacity: 0.9;background-color: #182129; margin-bottom: 10px;border:1px solid #3399FF;width: 100%;padding: 10px }
   button.filter,button.sort{color:#000;}
   a.btn{margin:3px;}
@@ -42,10 +41,13 @@ $commentActive = true;
        <div style="font-size:x-small;font-weight: normal;color:white;">Nombres de votants inscrit : <?php echo $uniqueVoters?></div>
     </div>
     <div style="float:right;">
-    <?php if( isset( Yii::app()->session["userId"])){?>
-      <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?> <?php if($where["type"]=="entry" && $isModerator){ ?><span class="badge badge-info">ADMIN</span><?php } ?></a>
-      <a href="<?php echo Yii::app()->createUrl('/site/logout')?>" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Logout</a>
-    <?php } else {?>
+    <?php if( isset( Yii::app()->session["userId"]) ){
+      if(!isset($user["tobeactivated"])){?>
+          <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?> <?php if($where["type"]=="entry" && $isModerator){ ?><span class="badge badge-info">ADMIN</span><?php } ?></a>
+          <a href="<?php echo Yii::app()->createUrl('/site/logout')?>" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Logout</a>
+      <?php } else {?>
+          <a href="#loginForm" class="btn " role="button" data-toggle="modal" title="connexion" ><i class="fa fa-signin"></i>Valider email</a>
+    <?php  } } else {?>
       <a href="#loginForm" class="btn " role="button" data-toggle="modal" title="connexion" ><i class="fa fa-signin"></i>Se Connecter pour voter</a>
     <?php } ?>
     </div>
