@@ -230,7 +230,8 @@ $commentActive = true;
 
   <br/>
   <label>Filtre:</label>
-  <?php if( isset( Yii::app()->session["userId"])){?>
+
+  <?php if( isset( Yii::app()->session["userId"]) && $where["type"]=="entry"){?>
   <a class="filter btn" data-filter=".avoter">A voter</a>
   <a class="filter btn" data-filter=".mesvotes">Mes votes</a>
   <a class="filter btn" data-filter=".myentries">Mes lois</a>
