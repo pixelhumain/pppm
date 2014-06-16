@@ -250,7 +250,7 @@ $commentActive = true;
   <div class="fr">
         <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
       </div>
-  Because We're happy<br><br><br><br><br><br>
+  Because We're happy!!!<br><br><br><br><br><br>
   </div>
 
   <div class="step what hidden">
