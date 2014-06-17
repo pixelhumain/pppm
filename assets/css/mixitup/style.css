@@ -99,7 +99,7 @@ button + label{
 @media all and (min-width: 420px){
   .mixcontainer .mix,
   .mixcontainer .gap{
-    width: 30%;
+    width: 100%;
   }
 }
 

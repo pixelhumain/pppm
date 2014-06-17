@@ -36,7 +36,9 @@ $commentActive = true;
   <div class=" home ">
   <div class="connect" >
     <div style="color:#3399FF;float:left;font-size: x-large;font-weight: bold">
-      <?php echo "<a href='".Yii::app()->createUrl($this->module->id)."'>".$this::moduleTitle."</a> : <a href='".Yii::app()->createUrl($this->module->id)."'>".$title."</a>";
+      <?php 
+      $logguedAndValid = ( isset( Yii::app()->session["userId"])  ) ;
+      echo "<a href='".Yii::app()->createUrl($this->module->id)."'>".$this::moduleTitle."</a> : <a href='".Yii::app()->createUrl($this->module->id)."'>".$title."</a>";
        if(isset($_GET["cp"])) echo " ".$_GET["cp"]?>
        <div style="font-size:x-small;font-weight: normal;color:white;">Nombres de votants inscrit : <?php echo $uniqueVoters?></div>
     </div>
@@ -54,7 +56,7 @@ $commentActive = true;
     <div style="clear: both;"></div>
   </div>
 
-<?php if( isset( Yii::app()->session["userId"]) && $where["type"]=="entry"){ ?>
+<?php if( $logguedAndValid && $where["type"]=="entry"){ ?>
   <div class="connect" style="margin-right: 50px;">
     <a href="#proposerloiForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" ><i class="fa fa-signout"></i>Proposer</a>
     <textarea id="message1" style="width:45%;height:30px;vertical-align: middle" onkeyup="AutoGrowTextArea(this);$('#message').val($('#message1').val());"></textarea>
@@ -64,7 +66,7 @@ $commentActive = true;
 
 <div class="controls" style="border-radius: 8px;">
   <?php
-  if($where["type"]=="entry" && isset( Yii::app()->session["userId"])){?>
+  if($where["type"]=="entry" && $logguedAndValid){?>
   <a href="#voterloiDescForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" ><i class="fa fa-signout"></i>Voter les propositions</a>
   <?php }
     $alltags = array(); 
@@ -103,10 +105,10 @@ $commentActive = true;
       $link = $name;
       
       //check if I wrote this law
-      $meslois = (isset( Yii::app()->session["userId"]) && Yii::app()->session["userEmail"] && $value['email'] == Yii::app()->session["userEmail"]) ? "myentries" : "";
+      $meslois = ($logguedAndValid && Yii::app()->session["userEmail"] && $value['email'] == Yii::app()->session["userEmail"]) ? "myentries" : "";
       
       //checks if the user is a follower of the entry
-      $followingEntry = (isset( Yii::app()->session["userId"]) 
+      $followingEntry = ($logguedAndValid 
                         && isset($value[ActionType::ACTION_FOLLOW]) 
                         && is_array($value[ActionType::ACTION_FOLLOW]) 
                         && in_array(Yii::app()->session["userId"], $value[ActionType::ACTION_FOLLOW])) ? "myentries":"";
@@ -125,74 +127,74 @@ $commentActive = true;
       
       //has loged user voted on this entry 
       //vote UPS
-      $voteUpActive = ( isset( Yii::app()->session["userId"]) 
+      $voteUpActive = ( $logguedAndValid 
                      && isset($value[ActionType::ACTION_VOTE_UP])
                      && is_array($value[ActionType::ACTION_VOTE_UP]) 
                      && in_array( Yii::app()->session["userId"] , $value[ActionType::ACTION_VOTE_UP] )) ? "active":"";
       $voteUpCount = (isset($value[ActionType::ACTION_VOTE_UP."Count"])) ? $value[ActionType::ACTION_VOTE_UP."Count"] : 0 ;
-      $hrefUp = (isset( Yii::app()->session["userId"]) && empty($voteUpActive)) ? "javascript:addaction('".$value["_id"]."','".ActionType::ACTION_VOTE_UP."')" : "";
+      $hrefUp = ($logguedAndValid && empty($voteUpActive)) ? "javascript:addaction('".$value["_id"]."','".ActionType::ACTION_VOTE_UP."')" : "";
       $classUp = $voteUpActive." ".ActionType::ACTION_VOTE_UP." ".$value["_id"].ActionType::ACTION_VOTE_UP;
       $iconUp = 'fa-thumbs-up';
 
       //vote ABSTAIN 
-      $voteAbstainActive = (isset( Yii::app()->session["userId"]) 
+      $voteAbstainActive = ($logguedAndValid 
                         && isset($value[ActionType::ACTION_VOTE_ABSTAIN])
                         && is_array($value[ActionType::ACTION_VOTE_ABSTAIN])
                         && in_array(Yii::app()->session["userId"], $value[ActionType::ACTION_VOTE_ABSTAIN])) ? "active":"";
       $voteAbstainCount = (isset($value[ActionType::ACTION_VOTE_ABSTAIN."Count"])) ? $value[ActionType::ACTION_VOTE_ABSTAIN."Count"] : 0 ;
-      $hrefAbstain = (isset( Yii::app()->session["userId"]) && empty($voteAbstainActive)) ? "javascript:addaction('".(string)$value["_id"]."','".ActionType::ACTION_VOTE_ABSTAIN."')" : "";
+      $hrefAbstain = ($logguedAndValid && empty($voteAbstainActive)) ? "javascript:addaction('".(string)$value["_id"]."','".ActionType::ACTION_VOTE_ABSTAIN."')" : "";
       $classAbstain = $voteAbstainActive." ".ActionType::ACTION_VOTE_ABSTAIN." ".$value["_id"].ActionType::ACTION_VOTE_ABSTAIN;
       $iconAbstain = 'fa-circle';
 
       //vote UNCLEAR
-      $voteUnclearActive = ( isset( Yii::app()->session["userId"]) 
+      $voteUnclearActive = ( $logguedAndValid 
                      && isset($value[ActionType::ACTION_VOTE_UNCLEAR])
                      && is_array($value[ActionType::ACTION_VOTE_UNCLEAR]) 
                      && in_array( Yii::app()->session["userId"] , $value[ActionType::ACTION_VOTE_UNCLEAR] )) ? "active":"";
       $voteUnclearCount = (isset($value[ActionType::ACTION_VOTE_UNCLEAR."Count"])) ? $value[ActionType::ACTION_VOTE_UNCLEAR."Count"] : 0 ;
-      $hrefUnclear = (isset( Yii::app()->session["userId"]) && empty($voteUnclearCount)) ? "javascript:addaction('".$value["_id"]."','".ActionType::ACTION_VOTE_UNCLEAR."')" : "";
+      $hrefUnclear = ($logguedAndValid && empty($voteUnclearCount)) ? "javascript:addaction('".$value["_id"]."','".ActionType::ACTION_VOTE_UNCLEAR."')" : "";
       $classUnclear = $voteUnclearActive." ".ActionType::ACTION_VOTE_UNCLEAR." ".$value["_id"].ActionType::ACTION_VOTE_UNCLEAR;
       $iconUnclear = "fa-pencil";
 
       //vote MORE INFO
-      $voteMoreInfoActive = ( isset( Yii::app()->session["userId"]) 
+      $voteMoreInfoActive = ( $logguedAndValid 
                      && isset($value[ActionType::ACTION_VOTE_MOREINFO])
                      && is_array($value[ActionType::ACTION_VOTE_MOREINFO]) 
                      && in_array( Yii::app()->session["userId"] , $value[ActionType::ACTION_VOTE_MOREINFO] )) ? "active":"";
       $voteMoreInfoCount = (isset($value[ActionType::ACTION_VOTE_MOREINFO."Count"])) ? $value[ActionType::ACTION_VOTE_MOREINFO."Count"] : 0 ;
-      $hrefMoreInfo = (isset( Yii::app()->session["userId"]) && empty($voteMoreInfoCount)) ? "javascript:addaction('".$value["_id"]."','".ActionType::ACTION_VOTE_MOREINFO."')" : "";
+      $hrefMoreInfo = ($logguedAndValid && empty($voteMoreInfoCount)) ? "javascript:addaction('".$value["_id"]."','".ActionType::ACTION_VOTE_MOREINFO."')" : "";
       $classMoreInfo = $voteMoreInfoActive." ".ActionType::ACTION_VOTE_MOREINFO." ".$value["_id"].ActionType::ACTION_VOTE_MOREINFO;
       $iconMoreInfo = "fa-question-circle";
 
       //vote DOWN 
-      $voteDownActive = (isset( Yii::app()->session["userId"]) 
+      $voteDownActive = ($logguedAndValid 
                         && isset($value[ActionType::ACTION_VOTE_DOWN]) 
                         && is_array($value[ActionType::ACTION_VOTE_DOWN]) 
                         && in_array(Yii::app()->session["userId"], $value[ActionType::ACTION_VOTE_DOWN])) ? "active":"";
       $voteDownCount = (isset($value[ActionType::ACTION_VOTE_DOWN."Count"])) ? $value[ActionType::ACTION_VOTE_DOWN."Count"] : 0 ;
-      $hrefDown = (isset( Yii::app()->session["userId"]) && empty($voteDownActive)) ? "javascript:addaction('".(string)$value["_id"]."','".ActionType::ACTION_VOTE_DOWN."')" : "";
+      $hrefDown = ($logguedAndValid && empty($voteDownActive)) ? "javascript:addaction('".(string)$value["_id"]."','".ActionType::ACTION_VOTE_DOWN."')" : "";
       $classDown = $voteDownActive." ".ActionType::ACTION_VOTE_DOWN." ".$value["_id"].ActionType::ACTION_VOTE_DOWN;
       $iconDown = "fa-thumbs-down";
 
       //votes cannot be changed, link become spans
       $avoter = "mesvotes";
       if( !empty($voteUpActive) || !empty($voteAbstainActive) || !empty($voteDownActive) || !empty($voteUnclearActive) || !empty($voteMoreInfoActive)){
-        $linkVoteUp = (isset( Yii::app()->session["userId"]) && !empty($voteUpActive) ) ? "<span class='".$classUp."' ><i class='fa $iconUp' ></i></span>" : "";
-        $linkVoteAbstain = (isset( Yii::app()->session["userId"]) && !empty($voteAbstainActive)) ? "<span class='".$classAbstain."'><i class='fa $iconAbstain'></i></span>" : "";
-        $linkVoteUnclear = (isset( Yii::app()->session["userId"]) && !empty($voteUnclearActive)) ? "<span class='".$classUnclear."'><i class='fa  $iconUnclear'></i></span>" : "";
-        $linkVoteMoreInfo = (isset( Yii::app()->session["userId"]) && !empty($voteMoreInfoActive)) ? "<span class='".$classMoreInfo."'><i class='fa  $iconMoreInfo'></i></span>" : "";
-        $linkVoteDown = (isset( Yii::app()->session["userId"]) && !empty($voteDownActive)) ? "<span class='".$classDown."' ><i class='fa $iconDown'></i></span>" : "";
+        $linkVoteUp = ($logguedAndValid && !empty($voteUpActive) ) ? "<span class='".$classUp."' ><i class='fa $iconUp' ></i></span>" : "";
+        $linkVoteAbstain = ($logguedAndValid && !empty($voteAbstainActive)) ? "<span class='".$classAbstain."'><i class='fa $iconAbstain'></i></span>" : "";
+        $linkVoteUnclear = ($logguedAndValid && !empty($voteUnclearActive)) ? "<span class='".$classUnclear."'><i class='fa  $iconUnclear'></i></span>" : "";
+        $linkVoteMoreInfo = ($logguedAndValid && !empty($voteMoreInfoActive)) ? "<span class='".$classMoreInfo."'><i class='fa  $iconMoreInfo'></i></span>" : "";
+        $linkVoteDown = ($logguedAndValid && !empty($voteDownActive)) ? "<span class='".$classDown."' ><i class='fa $iconDown'></i></span>" : "";
       }else{
         $avoter = "avoter";
-        $linkVoteUp = (isset( Yii::app()->session["userId"])  ) ? "<a class='btn ".$classUp."' href=\" ".$hrefUp." \" title='".$voteUpCount." Pour'><i class='fa $iconUp' ></i></a>" : "";
-        $linkVoteAbstain = (isset( Yii::app()->session["userId"]) ) ? "<a class='btn ".$classAbstain."' href=\"".$hrefAbstain."\" title=' ".$voteAbstainCount." Abstention'><i class='fa $iconAbstain'></i></a>" : "";
-        $linkVoteUnclear = (isset( Yii::app()->session["userId"]) ) ? "<a class='btn ".$classUnclear."' href=\"".$hrefUnclear."\" title=' ".$voteUnclearCount." Pas Clair Rerédiger'><i class='fa $iconUnclear'></i></a>" : "";
-        $linkVoteMoreInfo = (isset( Yii::app()->session["userId"]) ) ? "<a class='btn ".$classMoreInfo."' href=\"".$hrefMoreInfo."\" title=' ".$voteMoreInfoCount." Necessite plus dinformations'><i class='fa $iconMoreInfo'></i></a>" : "";
-        $linkVoteDown = (isset( Yii::app()->session["userId"])) ? "<a class='btn ".$classDown."' href=\"".$hrefDown."\" title='".$voteDownCount." Contre'><i class='fa $iconDown'></i></a>" : "";
+        $linkVoteUp = ($logguedAndValid  ) ? "<a class='btn ".$classUp."' href=\" ".$hrefUp." \" title='".$voteUpCount." Pour'><i class='fa $iconUp' ></i></a>" : "";
+        $linkVoteAbstain = ($logguedAndValid ) ? "<a class='btn ".$classAbstain."' href=\"".$hrefAbstain."\" title=' ".$voteAbstainCount." Abstention'><i class='fa $iconAbstain'></i></a>" : "";
+        $linkVoteUnclear = ($logguedAndValid ) ? "<a class='btn ".$classUnclear."' href=\"".$hrefUnclear."\" title=' ".$voteUnclearCount." Pas Clair Rerédiger'><i class='fa $iconUnclear'></i></a>" : "";
+        $linkVoteMoreInfo = ($logguedAndValid ) ? "<a class='btn ".$classMoreInfo."' href=\"".$hrefMoreInfo."\" title=' ".$voteMoreInfoCount." Necessite plus dinformations'><i class='fa $iconMoreInfo'></i></a>" : "";
+        $linkVoteDown = ($logguedAndValid) ? "<a class='btn ".$classDown."' href=\"".$hrefDown."\" title='".$voteDownCount." Contre'><i class='fa $iconDown'></i></a>" : "";
       }
       $hrefComment = "#commentsForm";
       $commentCount = 0;
-      $linkComment = (isset( Yii::app()->session["userId"]) && $commentActive) ? "<a class='btn ".$value["_id"].ActionType::ACTION_COMMENT."' role='button' data-toggle='modal' href=\"".$hrefComment."\" title='".$commentCount." Commentaire'><i class='fa fa-comments '></i></a>" : "";
+      $linkComment = ($logguedAndValid && $commentActive) ? "<a class='btn ".$value["_id"].ActionType::ACTION_COMMENT."' role='button' data-toggle='modal' href=\"".$hrefComment."\" title='".$commentCount." Commentaire'><i class='fa fa-comments '></i></a>" : "";
       $totalVote = $voteUpCount+$voteAbstainCount+$voteDownCount+$voteUnclearCount+$voteMoreInfoCount;
       $info = ($totalVote) ? '<span class="info">'.$totalVote.' sur <span class="info voterTotal">'.$uniqueVoters.'</span> voteur(s)</span><br/>':'<span class="info"></span><br/>';
 
@@ -234,7 +236,7 @@ $commentActive = true;
   <br/>
   <label>Filtre:</label>
 
-  <?php if( isset( Yii::app()->session["userId"]) && $where["type"]=="entry"){?>
+  <?php if( $logguedAndValid && $where["type"]=="entry"){?>
   <a class="filter btn" data-filter=".avoter">A voter</a>
   <a class="filter btn" data-filter=".mesvotes">Mes votes</a>
   <a class="filter btn" data-filter=".myentries">Mes lois</a>
