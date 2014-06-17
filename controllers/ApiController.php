@@ -62,6 +62,7 @@ class ApiController extends Controller {
         return array(
             'index'             => 'application.components.api.controllers.IndexAction',
             'login'             => 'application.controllers.user.LoginAction',
+            'sendemailpwd'      => 'application.controllers.user.SendEmailPwdAction',
             'saveuser'          => 'application.controllers.user.SaveUserAction',
             'communect'         => 'application.controllers.user.CommunectAction',
             'getuser'           => 'application.controllers.user.GetUserAction',

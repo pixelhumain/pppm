@@ -33,7 +33,9 @@ $commentActive = true;
   .step{ background-color: #182129;  opacity: 0.9;}
 </style>
 <section class="mt80 stepContainer">
+
   <div class=" home ">
+  
   <div class="connect" >
     <div style="color:#3399FF;float:left;font-size: x-large;font-weight: bold">
       <?php 
@@ -59,7 +61,7 @@ $commentActive = true;
 <?php if( $logguedAndValid && $where["type"]=="entry"){ ?>
   <div class="connect" style="margin-right: 50px;">
     <a href="#proposerloiForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" ><i class="fa fa-signout"></i>Proposer</a>
-    <textarea id="message1" style="width:45%;height:30px;vertical-align: middle" onkeyup="AutoGrowTextArea(this);$('#message').val($('#message1').val());"></textarea>
+    <textarea id="message1" style="width:45%;height:30px;vertical-align: middle" onkeyup="copytoPopin()"></textarea>
     <a href="#proposerloiForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" title="envoyer" >Envoyer</a>
   </div>
 <?php } ?>
@@ -393,6 +395,11 @@ $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
       $(activeView).addClass("hidden");
       $(ids).removeClass("hidden");
       activeView = ids;
+    }
+    function copytoPopin(){
+      txt = $('#message1').val();
+      AutoGrowTextArea(this);$('#message').val(txt);
+      $('#nameaddEntry').val(txt.substring(0,20));
     }
 </script>
 <?php

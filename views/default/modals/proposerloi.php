@@ -15,7 +15,7 @@
         title 
         <br/>
         <form id="saveEntryForm" action="">
-        <input type="text" name="nameaddEntry" id="nameaddEntry" maxlength=100 value="" placeholder="100 caract. max." />
+        <input type="text" name="nameaddEntry" id="nameaddEntry" width=200 maxlength=100 value="" placeholder="100 caract. max." />
         <br/><br/>
         message
         <textarea id="message" style="width:100%;height:30px;vertical-align: middle" onkeyup="AutoGrowTextArea(this);$('#message1').val($('#message').val())"></textarea>
@@ -35,42 +35,48 @@ initT['proposerloiModalsInit'] = function(){
     $("#saveEntryForm").submit( function(event){
       //log($(this).serialize());
       event.preventDefault();
-      $("#proposerloiForm").modal('hide');
-      //toggleSpinner();
-      var hashtagList = getHashTagList( $("#message").val() );
-      log(hashtagList.hashtags);
-      //log(hashtagList.people);
+      one = getRandomInt(0,10);
+      two = getRandomInt(0,10);
+      if( prompt("combien font "+one+"+"+two+" ?") == one+two ){
+        $("#proposerloiForm").modal('hide');
+        //toggleSpinner();
+        var hashtagList = getHashTagList( $("#message").val() );
+        log(hashtagList.hashtags);
+        //log(hashtagList.people);
 
-      params = { "survey" : "<?php echo (string)$survey['_id']?>", 
-               "email" : "<?php echo Yii::app()->session['userEmail']?>" , 
-               "name" : $("#nameaddEntry").val() , 
-               "tags" : hashtagList.hashtags ,
-               "message":$("#message").val(),
-               "cp" : "<?php echo $survey['cp']?>" , 
-               "type" : "entry"};
+        params = { "survey" : "<?php echo (string)$survey['_id']?>", 
+                 "email" : "<?php echo Yii::app()->session['userEmail']?>" , 
+                 "name" : $("#nameaddEntry").val() , 
+                 "tags" : hashtagList.hashtags ,
+                 "message":$("#message").val(),
+                 "cp" : "<?php echo $survey['cp']?>" , 
+                 "type" : "entry"};
 
-     $.ajax({
-        type: "POST",
-        url: '<?php echo Yii::app()->createUrl($this->module->id."/api/saveSession")?>',
-        data: params,
-        success: function(data){
-          if(data.result){
-              window.location.reload();
-          }
-          else {
-                $("#flashInfo .modal-body").html(data.msg);
-                $("#flashInfo").modal('show');
-          }
-          //toggleSpinner();
-        },
-        dataType: "json"
-      });
-    
+       $.ajax({
+          type: "POST",
+          url: '<?php echo Yii::app()->createUrl($this->module->id."/api/saveSession")?>',
+          data: params,
+          success: function(data){
+            if(data.result){
+                window.location.reload();
+            }
+            else {
+                  $("#flashInfo .modal-body").html(data.msg);
+                  $("#flashInfo").modal('show');
+            }
+            //toggleSpinner();
+          },
+          dataType: "json"
+        });
+    } else 
+      alert("mauvaise réponse, etes vous humain ?");
     });
   
     
 };
-
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 function getHashTagList(mystr){
   var strT = mystr.split(" ");
   hashtags = "";
