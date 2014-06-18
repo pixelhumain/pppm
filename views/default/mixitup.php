@@ -252,51 +252,16 @@ $commentActive = true;
 </div>
 </div>
 
-<div class="step why hidden">
-  <div class="fr">
-        <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
-      </div>
-  Because We're happy!!!<br><br><br><br><br><br>
-  </div>
-
-  <div class="step what hidden">
-    <div class="fr">
-        <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
-      </div>
-  Come and have fun<br><br><br><br><br><br>
-  </div>
-
-  <div class="step how hidden">
-    <div class="fr">
-        <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
-      </div>
-  Come and get some<br><br><br><br><br><br>
-  </div>
-
-  <div class="step who hidden">
-    <div class="fr">
-        <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
-      </div>
-  All night long<br><br><br><br><br><br>
-  </div>
-
-  <div class="step when hidden">
-    <div class="fr">
-        <img src="<?php echo Yii::app()->theme->baseUrl;?>/img/bdb.png" style="width:120px;float:right;">
-      </div>
-  Get up Stand up<br><br><br><br><br><br>
-  </div>
-
 </section>
 
 <script type="text/javascript">
 var layout = 'grid', // Store the current layout as a variable
-$container = $('#mixcontainer'), // Cache the MixItUp container
-$changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
+container = $('#mixcontainer'), // Cache the MixItUp container
+changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
 
   $(function(){
 
-    $container.mixItUp({
+    container.mixItUp({
         load: {sort: 'vote:desc'},
         animation: {
           animateChangeLayout: true, // Animate the positions of targets as the layout changes
@@ -311,14 +276,14 @@ $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
     //$('.inlinebar').sparkline('html', {type: 'pie'} );
 });
 
-  $changeLayout.on('click', function(){
+  changeLayout.on('click', function(){
     
     // If the current layout is a list, change to grid:
     
     if(layout == 'list'){
       layout = 'grid';
-      $changeLayout.html('<i class="fa fa-reorder"></i>'); // Update the button text
-      $container.mixItUp('changeLayout', {
+      changeLayout.html('<i class="fa fa-reorder"></i>'); // Update the button text
+      container.mixItUp('changeLayout', {
         containerClass: layout // change the container class to "grid"
       });
       
@@ -326,14 +291,14 @@ $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
     
     } else {
       layout = 'list';
-      $changeLayout.html('<i class="fa fa-th"></i>'); // Update the button text
-      $container.mixItUp('changeLayout', {
+      changeLayout.html('<i class="fa fa-th"></i>'); // Update the button text
+      container.mixItUp('changeLayout', {
         containerClass: layout // Change the container class to 'list'
       });
     }
   });
 
-  function entryDetail(url,type=null){
+  function entryDetail(url,type){
     testitget( null , url , function(data){
       if(type == "edit") {
         $("#flashInfo").modal('hide');
@@ -390,7 +355,7 @@ $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
       });
     }
     activeView = ".home";
-    function hideShow(ids,parent=".step")
+    function hideShow(ids,parent)
     {
       $(activeView).addClass("hidden");
       $(ids).removeClass("hidden");
