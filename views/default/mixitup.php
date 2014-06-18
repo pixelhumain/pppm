@@ -48,7 +48,7 @@ $commentActive = true;
     <?php if( isset( Yii::app()->session["userId"]) ){
       if(!isset($user["tobeactivated"])){?>
           <a href="#participer" class="btn" role="button" data-toggle="modal" title="mon compte" ><i class="icon-cog-1"></i><?php echo  $user["email"];?> <?php if($where["type"]=="entry" && $isModerator){ ?><span class="badge badge-info">ADMIN</span><?php } ?></a>
-          <a href="<?php echo Yii::app()->createUrl('/site/logout')?>" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Logout</a>
+          <a href="<?php echo Yii::app()->createUrl('/site/logout')?>" class="btn " role="button" data-toggle="modal" title="deconnexion" ><i class="fa fa-signout"></i>Se déconnecter</a>
       <?php } else {?>
           <a href="#loginForm" class="btn " role="button" data-toggle="modal" title="connexion" ><i class="fa fa-signin"></i>Valider email</a>
     <?php  } } else {?>
@@ -256,12 +256,12 @@ $commentActive = true;
 
 <script type="text/javascript">
 var layout = 'grid', // Store the current layout as a variable
-container = $('#mixcontainer'), // Cache the MixItUp container
-changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
+$container = $('#mixcontainer'), // Cache the MixItUp container
+$changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
 
   $(function(){
 
-    container.mixItUp({
+    $container.mixItUp({
         load: {sort: 'vote:desc'},
         animation: {
           animateChangeLayout: true, // Animate the positions of targets as the layout changes
@@ -276,14 +276,14 @@ changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
     //$('.inlinebar').sparkline('html', {type: 'pie'} );
 });
 
-  changeLayout.on('click', function(){
+  $changeLayout.on('click', function(){
     
     // If the current layout is a list, change to grid:
     
     if(layout == 'list'){
       layout = 'grid';
-      changeLayout.html('<i class="fa fa-reorder"></i>'); // Update the button text
-      container.mixItUp('changeLayout', {
+      $changeLayout.html('<i class="fa fa-reorder"></i>'); // Update the button text
+      $container.mixItUp('changeLayout', {
         containerClass: layout // change the container class to "grid"
       });
       
@@ -291,8 +291,8 @@ changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
     
     } else {
       layout = 'list';
-      changeLayout.html('<i class="fa fa-th"></i>'); // Update the button text
-      container.mixItUp('changeLayout', {
+      $changeLayout.html('<i class="fa fa-th"></i>'); // Update the button text
+      $container.mixItUp('changeLayout', {
         containerClass: layout // Change the container class to 'list'
       });
     }
