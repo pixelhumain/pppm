@@ -47,12 +47,13 @@ class DefaultController extends Controller {
     $list = PHDB::find(PHType::TYPE_SURVEYS, $where );
     $user = ( isset( Yii::app()->session["userId"])) ? PHDB::findOne (PHType::TYPE_CITOYEN, array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
     $uniqueVoters = PHDB::count( PHType::TYPE_CITOYEN, array("applications.survey"=>array('$exists'=>true)) );
-	  $this->render( "mixitup", array(  "list" => $list,
+	  $this->render( "index", array(  "list" => $list,
                                       "title"=>$title,
                                       "where"=>$where,
                                       "user"=>$user,
                                       "uniqueVoters"=>$uniqueVoters  )  );
 	}
+  
   public function actionEntries($surveyId) 
   {
     $where = array( "type"=>SurveyType::TYPE_ENTRY, "survey"=>$surveyId );
@@ -72,7 +73,7 @@ class DefaultController extends Controller {
 
 
     $uniqueVoters = PHDB::count( PHType::TYPE_CITOYEN, array("applications.survey"=>array('$exists'=>true)) );
-    $this->render( "mixitup", array( "list" => $list,
+    $this->render( "index", array( "list" => $list,
                                      "title"=>$title,
                                      "where"=>$where,
                                      "user"=>$user,
