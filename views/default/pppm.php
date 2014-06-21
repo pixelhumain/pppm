@@ -31,6 +31,7 @@ $commentActive = true;
   a.btn.voteAbstain{background-color: white;border: 1px solid white;}
   a.btn.voteDown{background-color: #db254e;border: 1px solid #db254e;}
   .step{ background-color: #182129;  opacity: 0.9;}
+  .dropdown{position: relative;z-index: 10000;}
 </style>
 <section class="mt80 stepContainer">
   <div class=" home ">
@@ -95,7 +96,7 @@ $commentActive = true;
           if(!empty($t) && !in_array($t, $alltags))
           {
             array_push($alltags, $t);
-            $tagBlock .= ' <button class="filter " data-filter=".'.$t.'">'.$t.'</button>';
+            $tagBlock .= '<li><a class="filter " data-filter=".'.$t.'">'.$t.'</a></li>';
           }
           $tags .= $t.' ';
         }
@@ -220,10 +221,10 @@ $commentActive = true;
     }
     ?>
 
-  <label>Classement:</label>
+  <label>tri alphabétique:</label>
   <button class="sort " data-sort="vote:asc">Asc</button>
   <button class="sort " data-sort="vote:desc">Desc</button>
-  <label>Chronos:</label>
+  <label>tri chronologique:</label>
   <button class="sort " data-sort="time:asc">Asc</button>
   <button class="sort " data-sort="time:desc">Desc</button>
   <label>Affichage:</label>
@@ -231,7 +232,7 @@ $commentActive = true;
   
   <?php if(!isset($_GET["cp"]) && $where["type"]=="survey")
       {?>
-  <label>Commune:</label>
+  <label> tri géographique:</label>
   <?php echo $cpBlock; }?>
 
   <br/>
@@ -243,7 +244,12 @@ $commentActive = true;
   <a class="filter btn" data-filter=".myentries">Mes lois</a>
   <?php } ?>
   <button class="filter " data-filter="all">Tout</button>
-  <?php echo $tagBlock?>
+  <span class="dropdown">
+      <a data-toggle="dropdown" href="#">Thématique</a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <?php echo $tagBlock?>
+      </ul>
+  </span>
 
 </div>
 <div id="mixcontainer" class="mixcontainer">
@@ -316,7 +322,7 @@ $(function(){
     } );
   }
   function addaction(id,action){
-      if(confirm("Vous êtes sûr ?")){
+      if(confirm("Vous êtes sûr ? Vous ne pourrez pas changer votre vote")){
         params = { 
              "email" : '<?php echo Yii::app()->session["userEmail"]?>' , 
              "id" : id ,
