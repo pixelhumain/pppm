@@ -224,11 +224,8 @@ $commentActive = true;
   <?php echo $cpBlock; 
   }?>
 
-  <label>Chronologique:</label>
-  <button class="sort " data-sort="time:asc">Asc</button>
-  <button class="sort " data-sort="time:desc">Desc</button>
-  <label>Affichage:</label>
-  <button id="ChangeLayout"><i class="fa fa-reorder"></i></button>
+  
+ 
   <br/>
   <label>Filtre:</label>
 
@@ -241,12 +238,16 @@ $commentActive = true;
   <?php echo $tagBlock?>
 
   <br/>
-  <?php if($where["type"]=="survey"){?>
+  <?php if(!isset($_GET["cp"]) && $where["type"]=="survey"){?>
   <label>Participation:</label>
   <button class="sort " data-sort="vote:asc">Asc</button>
   <button class="sort " data-sort="vote:desc">Desc</button>
   <?php } ?>
-  
+  <label>Chronologique:</label>
+  <button class="sort " data-sort="time:asc">Asc</button>
+  <button class="sort " data-sort="time:desc">Desc</button>
+  <label>Affichage:</label>
+  <button id="ChangeLayout"><i class="fa fa-reorder"></i></button>
 </div>
 
 <div id="mixcontainer" class="mixcontainer">
