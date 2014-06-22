@@ -31,7 +31,7 @@ $commentActive = true;
   a.btn.voteAbstain{background-color: white;border: 1px solid white;}
   a.btn.voteDown{background-color: #db254e;border: 1px solid #db254e;}
   .step{ background-color: #182129;  opacity: 0.9;}
-  .dropdown{position: relative;z-index: 10000;}
+  .taglist{width: 255px;display: inline;background-color:#3490EC;color:#000;padding: 3px 5px;height: 28px; }
 </style>
 <section class="mt80 stepContainer">
   <div class=" home ">
@@ -65,8 +65,6 @@ $commentActive = true;
     <a href="#proposerloiForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" title="envoyer" >Envoyer</a>
   </div>
 <?php } ?>
-
-<div class="controls" style="border-radius: 8px;">
   <?php
   if($where["type"]=="entry" && $logguedAndValid){?>
   <a href="#voterloiDescForm" class="btn " role="button" data-toggle="modal" title="proposer une loi" ><i class="fa fa-signout"></i>Voter les propositions</a>
@@ -96,7 +94,7 @@ $commentActive = true;
           if(!empty($t) && !in_array($t, $alltags))
           {
             array_push($alltags, $t);
-            $tagBlock .= '<li><a class="filter " data-filter=".'.$t.'">'.$t.'</a></li>';
+            $tagBlock .= '<option value=".'.$t.'">'.$t.'</option>';
           }
           $tags .= $t.' ';
         }
@@ -220,7 +218,7 @@ $commentActive = true;
                     '</div>';
     }
     ?>
-
+<div class="controls" style="border-radius: 8px;">
   <label>tri alphabétique:</label>
   <button class="sort " data-sort="vote:asc">Asc</button>
   <button class="sort " data-sort="vote:desc">Desc</button>
@@ -232,6 +230,7 @@ $commentActive = true;
   
   <?php if(!isset($_GET["cp"]) && $where["type"]=="survey")
       {?>
+  </br>    
   <label> tri géographique:</label>
   <?php echo $cpBlock; }?>
 
@@ -244,17 +243,16 @@ $commentActive = true;
   <a class="filter btn" data-filter=".myentries">Mes lois</a>
   <?php } ?>
   <button class="filter " data-filter="all">Tout</button>
-  <span class="dropdown">
-      <a data-toggle="dropdown" href="#">Thématique</a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        <?php echo $tagBlock?>
-      </ul>
-  </span>
+  <select class="taglist form-control">
+    <?php echo $tagBlock?>
+  </select>
 
 </div>
+
 <div id="mixcontainer" class="mixcontainer">
   <?php echo $blocks?>
 </div>
+
 </div>
 
 </section>

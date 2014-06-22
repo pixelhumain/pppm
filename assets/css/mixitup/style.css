@@ -60,6 +60,7 @@ button + label{
     padding:10px;
     margin-bottom:5px;
     color: white;
+    z-index: 1;
 }
 
 .mixcontainer .mix a,.mixcontainer .mix span{
