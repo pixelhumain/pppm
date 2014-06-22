@@ -9,7 +9,7 @@
  */
 class DefaultController extends Controller {
 
-    const moduleTitle = "Votes St pierre & Miquelon";
+    const moduleTitle = "VOTE.partipirate.pm";
     public static $moduleKey = "pppm";
 
     public $keywords = "connecter, réseau, sociétal, citoyen, société, regrouper, commune, communecter, social";
@@ -68,7 +68,7 @@ class DefaultController extends Controller {
     $list = PHDB::find(PHType::TYPE_SURVEYS, $where );
     $survey = PHDB::findOne (PHType::TYPE_SURVEYS, array("_id"=>new MongoId ( $surveyId ) ) );
     $where["survey"] = $survey;
-    $title = "Commune ".$survey["cp"]." : ".$survey["name"];
+    $title = $survey["cp"]." : ".$survey["name"];
     $user = ( isset( Yii::app()->session["userId"])) ? PHDB::findOne (PHType::TYPE_CITOYEN, array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
 
 

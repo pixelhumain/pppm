@@ -219,10 +219,10 @@ $commentActive = true;
     }
     ?>
 <div class="controls" style="border-radius: 8px;">
-  <label>tri alphabétique:</label>
+  <label>alphabétique:</label>
   <button class="sort " data-sort="vote:asc">Asc</button>
   <button class="sort " data-sort="vote:desc">Desc</button>
-  <label>tri chronologique:</label>
+  <label>chronologique:</label>
   <button class="sort " data-sort="time:asc">Asc</button>
   <button class="sort " data-sort="time:desc">Desc</button>
   <label>Affichage:</label>
@@ -231,7 +231,7 @@ $commentActive = true;
   <?php if(!isset($_GET["cp"]) && $where["type"]=="survey")
       {?>
   </br>    
-  <label> tri géographique:</label>
+  <label>géographique:</label>
   <?php echo $cpBlock; }?>
 
   <br/>

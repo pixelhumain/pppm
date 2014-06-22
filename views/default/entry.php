@@ -1,5 +1,3 @@
-<span style="color:red">A designer :</span>
-<br/>
 <?php 
 echo $survey["message"];
 ?>
