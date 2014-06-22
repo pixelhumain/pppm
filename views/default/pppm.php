@@ -94,7 +94,7 @@ $commentActive = true;
           if(!empty($t) && !in_array($t, $alltags))
           {
             array_push($alltags, $t);
-            $tagBlock .= '<option value=".'.$t.'">'.$t.'</option>';
+            $tagBlock .= ' <button class="filter " data-filter=".'.$t.'">'.$t.'</button>';
           }
           $tags .= $t.' ';
         }
@@ -219,21 +219,16 @@ $commentActive = true;
     }
     ?>
 <div class="controls" style="border-radius: 8px;">
-  <label>alphabétique:</label>
-  <button class="sort " data-sort="vote:asc">Asc</button>
-  <button class="sort " data-sort="vote:desc">Desc</button>
-  <label>chronologique:</label>
+  <?php if(!isset($_GET["cp"]) && $where["type"]=="survey"){?> 
+  <label>Géographique:</label>
+  <?php echo $cpBlock; 
+  }?>
+
+  <label>Chronologique:</label>
   <button class="sort " data-sort="time:asc">Asc</button>
   <button class="sort " data-sort="time:desc">Desc</button>
   <label>Affichage:</label>
   <button id="ChangeLayout"><i class="fa fa-reorder"></i></button>
-  
-  <?php if(!isset($_GET["cp"]) && $where["type"]=="survey")
-      {?>
-  </br>    
-  <label>géographique:</label>
-  <?php echo $cpBlock; }?>
-
   <br/>
   <label>Filtre:</label>
 
@@ -243,10 +238,15 @@ $commentActive = true;
   <a class="filter btn" data-filter=".myentries">Mes lois</a>
   <?php } ?>
   <button class="filter " data-filter="all">Tout</button>
-  <select class="taglist form-control">
-    <?php echo $tagBlock?>
-  </select>
+  <?php echo $tagBlock?>
 
+  <br/>
+  <?php if($where["type"]=="survey"){?>
+  <label>Participation:</label>
+  <button class="sort " data-sort="vote:asc">Asc</button>
+  <button class="sort " data-sort="vote:desc">Desc</button>
+  <?php } ?>
+  
 </div>
 
 <div id="mixcontainer" class="mixcontainer">
