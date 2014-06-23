@@ -12,7 +12,7 @@ $commentActive = true;
 ?>
 
 <style type="text/css">
-  body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/<?php  echo (PH::notlocalServer()) ? 'frings.jpg' : 'cloud.jpg'?>") repeat;}
+  body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/<?php  echo (PH::notlocalServer()) ? 'frings.jpg' : 'fond-eau.jpg'?>") repeat;}
   .connect{border-radius: 8px; opacity: 0.9;background-color: #182129; margin-bottom: 10px;border:1px solid #3399FF;width: 100%;padding: 10px }
   button.filter,button.sort{color:#000;}
   a.btn{margin:3px;}
@@ -52,7 +52,7 @@ $commentActive = true;
       <?php } else {?>
           <a href="#loginForm" class="btn " role="button" data-toggle="modal" title="connexion" ><i class="fa fa-signin"></i>Valider email</a>
     <?php  } } else {?>
-      <a href="#loginForm" class="btn " role="button" data-toggle="modal" title="connexion" ><i class="fa fa-signin"></i>Se Connecter pour voter</a>
+      <a href="#loginForm" class="btn " role="button" data-toggle="modal" title="connexion" ><i class="fa fa-signin"></i>S'inscrire ou se connecter</a>
     <?php } ?>
     </div>
     <div style="clear: both;"></div>
@@ -290,7 +290,7 @@ $(function(){
         }
       });
     NProgress.done();
-    //$('.inlinebar').sparkline('html', {type: 'pie'} );
+    moduleWording();
 });
 
   $changeLayout.on('click', function(){
@@ -382,6 +382,11 @@ $(function(){
       txt = $('#message1').val();
       AutoGrowTextArea(this);$('#message').val(txt);
       $('#nameaddEntry').val(txt.substring(0,20));
+    }
+    function moduleWording(){
+      $(".loginFormToptxt").html( "Inscrivez vous avec votre email pour donner vos consignes de votes et faire des propositions."+
+                                  "<br/>Si vous êtes déja inscrit , connectez vous avec votre email d'inscription.");
+      $(".loginFormToptxt2").html("Si vous n'avez pas de compte ce même formulaire vous créera un compte, sinon vous logguera.");
     }
 </script>
 <?php
