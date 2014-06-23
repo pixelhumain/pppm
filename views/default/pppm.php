@@ -366,7 +366,7 @@ $(function(){
     {
       params = { "survey" : id , 
             "action" : action , 
-              "app" : "survey"};
+              "app" : "<?php echo $this->module->id?>"};
       testitpost("moderateEntryResult",'<?php echo Yii::app()->createUrl($this->module->id."/api/moderateentry")?>',params,function(){
         window.location.reload();
       });

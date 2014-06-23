@@ -52,12 +52,14 @@ initT['proposerloiModalsInit'] = function(){
         //log(hashtagList.people);
 
         params = { "survey" : "<?php echo (string)$survey['_id']?>", 
-                 "email" : "<?php echo Yii::app()->session['userEmail']?>" , 
-                 "name" : $("#nameaddEntry").val() , 
-                 "tags" : hashtagList.hashtags ,
-                 "message":$("#message").val(),
-                 "cp" : "<?php echo $survey['cp']?>" , 
-                 "type" : "entry"};
+                   "email" : "<?php echo Yii::app()->session['userEmail']?>" , 
+                   "name" : $("#nameaddEntry").val() , 
+                   "tags" : hashtagList.hashtags ,
+                   "message":$("#message").val(),
+                   "cp" : "<?php echo $survey['cp']?>" , 
+                   "type" : "entry",
+                   "app":"<?php echo $this->module->id?>"
+                };
 
        $.ajax({
           type: "POST",
