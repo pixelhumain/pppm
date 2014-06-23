@@ -78,9 +78,22 @@ $commentActive = true;
     {
       $name = $value["name"];
       $email =  (isset($value["email"])) ? $value["email"] : "";
+      $cpList = $value["cp"] ; 
       if( !isset($_GET["cp"]) && $value["type"]=="survey" )
       {
-        if(!in_array($value["cp"], $cps)){
+        if(is_array($value["cp"]))
+        {
+          $cpList = "";
+          foreach ($value["cp"] as $cp) {
+            if(!in_array($cp, $cps)){
+              $cpBlock .= ' <button class="filter " data-filter=".'.$cp.'">'.$cp.'</button>';
+              array_push($cps, $cp);
+            }
+            $cpList .= $cp." ";
+          }
+        } 
+        else if(!in_array($value["cp"], $cps))
+        {
           $cpBlock .= ' <button class="filter " data-filter=".'.$value["cp"].'">'.$value["cp"].'</button>';
           array_push($cps, $value["cp"]);
         }
@@ -100,7 +113,7 @@ $commentActive = true;
         }
       }
 
-      $cp = ($value["type"]=="survey") ? $value["cp"] : "" ; 
+      
       $count = Yii::app()->mongodb->surveys->count ( array("type"=>"entry","survey"=>(string)$value["_id"]) );
       $link = $name;
       
@@ -207,7 +220,7 @@ $commentActive = true;
       $rightLinks = ($value["type"]=="entry") ? "<div class='rightlinks'>".$rightLinks."</div>" : "";
       $ordre = $voteUpCount+$voteDownCount;
       $created = (isset($value["created"])) ? $value["created"] : 0; 
-      $blocks .= ' <div class="mix '.$avoter.' '.$meslois.' '.$followingEntry.' '.$tags.' '.$cp.'" data-vote="'.$ordre.'"  data-time="'.$created.'" style="display:inline-blocks"">'.
+      $blocks .= ' <div class="mix '.$avoter.' '.$meslois.' '.$followingEntry.' '.$tags.' '.$cpList.'" data-vote="'.$ordre.'"  data-time="'.$created.'" style="display:inline-blocks"">'.
                     $link.'<br/>'.
                     $info.
                     //$tags.
