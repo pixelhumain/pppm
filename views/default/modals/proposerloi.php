@@ -10,28 +10,36 @@ $cs->registerScriptFile(Yii::app()->getModule('githubs')->assetsUrl. '/wysihtml5
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="proposerloiFormLabel" >Faites une Proposition :</h3>
+        <h3 id="proposerloiFormLabel" >Faites une proposition </h3>
       </div>
       <div class="modal-body">
-      	<p> blah blah.
-        Use #HashTags in text and @tags for people
-        These will be automatically converted
-        Surligner le texte qui va dans le titre
-        </p>
-        title 
+      	<p> Vous pouvez proposer toute initiative relevant de la compétence de votre 
+          député ou pour laquelle vous souhaiteriez un vote de vos concitoyens. </p>
         <br/>
         <form id="saveEntryForm" action="">
+          Titre de la proposition<br/>
         <input type="text" name="nameaddEntry" id="nameaddEntry" width=200 maxlength=100 value="" placeholder="100 caract. max." />
         <br/><br/>
-        message
+        Texte de la proposition<br/>
         <textarea id="message" style="width:100%;height:30px;vertical-align: middle" onkeyup="AutoGrowTextArea(this);$('#message1').val($('#message').val())"></textarea>
         </form>
         <div style="clear:both"></div>
       </div>
        <div class="modal-footer">
           
-          <a class="btn btn-warning " href="javascript:;" onclick="$('#saveEntryForm').submit();return false;"  >Enregistrer</a>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <a class="btn btn-warning " href="javascript:;" onclick="$('#saveEntryForm').submit();return false;"  >Proposer</a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+          <br/>
+          Les propositions sont modérées avant publication sur le site afin d'éviter tous propos contraires à la loi ou susceptible de troubler l'ordre public.
+          <br/>
+          Nous nous réservons donc la possibilité de modifier, reformuler, compléter, différer ou ne pas publier tout ou partie d'une proposition. Dans cette éventualité, nous pouvons être amener à vous contacter par mail.
+          <br/>
+          Selon le nombre de propositions reçues, le délai de mise en ligne peut être variable. En cas d'urgence, merci le signaler des le début de votre proposition.
+          <br/>
+          Votre proposition sera publiée par l'administrateur du site vote.partipirate.pm. Ni votre adresse email ni votre nom n'apparaitront sur le site public.
+          <br/>
+          Vous pouvez aussi nous faire part de toute remarque constructive, nous permettant d'améliorer ce site à votre service"
+          <br/>
         </div>
     </div>
 </div>

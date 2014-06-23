@@ -68,9 +68,8 @@ class DefaultController extends Controller {
     $list = PHDB::find(PHType::TYPE_SURVEYS, $where );
     $survey = PHDB::findOne (PHType::TYPE_SURVEYS, array("_id"=>new MongoId ( $surveyId ) ) );
     $where["survey"] = $survey;
-    $title = $survey["cp"]." : ".$survey["name"];
+    $title = $survey["name"];
     $user = ( isset( Yii::app()->session["userId"])) ? PHDB::findOne (PHType::TYPE_CITOYEN, array("_id"=>new MongoId ( Yii::app()->session["userId"] ) ) ) : null;
-
 
     $uniqueVoters = PHDB::count( PHType::TYPE_CITOYEN, array("applications.survey"=>array('$exists'=>true)) );
     $this->render( "pppm", array( "list" => $list,

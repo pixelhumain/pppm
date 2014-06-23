@@ -40,7 +40,7 @@ $commentActive = true;
     <div style="color:#3399FF;float:left;font-size: x-large;font-weight: bold">
       <?php 
       $logguedAndValid = ( isset( Yii::app()->session["userId"]) && !isset($user["tobeactivated"]) ) ;
-      echo "<a href='".Yii::app()->createUrl($this->module->id)."'>".$this::moduleTitle."</a> : <a href='".Yii::app()->createUrl($this->module->id)."'>".$title."</a>";
+      echo "<a href='".Yii::app()->createUrl($this->module->id)."'>".$this::moduleTitle."</a> : <a href='".Yii::app()->createUrl("")."'>".$title."</a>";
        if(isset($_GET["cp"])) echo " ".$_GET["cp"]?>
        <div style="font-size:x-small;font-weight: normal;color:white;">Nombres de votants inscrit : <?php echo $uniqueVoters?></div>
     </div>
@@ -393,6 +393,7 @@ $(function(){
 if($where["type"]=="entry"){
   $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.'.views.default.modals.proposerloi',array("survey"=>$where["survey"]));
   $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.'.views.default.modals.voterloiDesc');
+  $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.'.views.default.modals.cgu');
   if($commentActive)
     $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.'.views.default.modals.comments');
 }
