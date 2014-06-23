@@ -28,7 +28,7 @@ $commentActive = true;
   a.btn.voteUp{background-color: #93C22C;border: 1px solid green;}
   a.btn.voteUnclear{background-color: yellow;border: 1px solid yellow;}
   a.btn.voteMoreInfo{background-color: #789289;border: 1px solid #789289;}
-  a.btn.voteAbstain{background-color: white;border: 1px solid white;}
+  a.btn.voteAbstain{color: white;background-color: white;border: 1px solid white;}
   a.btn.voteDown{background-color: #db254e;border: 1px solid #db254e;}
   .step{ background-color: #182129;  opacity: 0.9;}
   .taglist{width: 255px;display: inline;background-color:#3490EC;color:#000;padding: 3px 5px;height: 28px; }
@@ -200,9 +200,9 @@ $commentActive = true;
       }else{
         $avoter = "avoter";
         $linkVoteUp = ($logguedAndValid  ) ? "<a class='btn ".$classUp."' href=\" ".$hrefUp." \" title='".$voteUpCount." Pour'><i class='fa $iconUp' ></i></a>" : "";
-        $linkVoteAbstain = ($logguedAndValid ) ? "<a class='btn ".$classAbstain."' href=\"".$hrefAbstain."\" title=' ".$voteAbstainCount." Abstention'><i class='fa $iconAbstain'></i></a>" : "";
-        $linkVoteUnclear = ($logguedAndValid ) ? "<a class='btn ".$classUnclear."' href=\"".$hrefUnclear."\" title=' ".$voteUnclearCount." Pas Clair Rerédiger'><i class='fa $iconUnclear'></i></a>" : "";
-        $linkVoteMoreInfo = ($logguedAndValid ) ? "<a class='btn ".$classMoreInfo."' href=\"".$hrefMoreInfo."\" title=' ".$voteMoreInfoCount." Necessite plus dinformations'><i class='fa $iconMoreInfo'></i></a>" : "";
+        $linkVoteAbstain = ($logguedAndValid ) ? "<a class='btn ".$classAbstain."' href=\"".$hrefAbstain."\" title=' ".$voteAbstainCount." Blanc'><i class='fa $iconAbstain'></i></a>" : "";
+        $linkVoteUnclear = ($logguedAndValid ) ? "<a class='btn ".$classUnclear."' href=\"".$hrefUnclear."\" title=' ".$voteUnclearCount." Amender'><i class='fa $iconUnclear'></i></a>" : "";
+        $linkVoteMoreInfo = ($logguedAndValid ) ? "<a class='btn ".$classMoreInfo."' href=\"".$hrefMoreInfo."\" title=' ".$voteMoreInfoCount." Plus d'informations.'><i class='fa $iconMoreInfo'></i></a>" : "";
         $linkVoteDown = ($logguedAndValid) ? "<a class='btn ".$classDown."' href=\"".$hrefDown."\" title='".$voteDownCount." Contre'><i class='fa $iconDown'></i></a>" : "";
       }
       $hrefComment = "#commentsForm";
