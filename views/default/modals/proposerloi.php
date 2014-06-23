@@ -1,8 +1,9 @@
 <?php 
-$cs = Yii::app()->getClientScript();
+/*$cs = Yii::app()->getClientScript();
+//$cs->registerCssFile(Yii::app()->getModule('githubs')->assetsUrl. '/wysihtml5/css/stylesheet.css');
 $cs->registerScriptFile(Yii::app()->getModule('githubs')->assetsUrl. '/wysihtml5/advanced.js', CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->getModule('githubs')->assetsUrl. '/wysihtml5/wysihtml5-0.4.0pre.min.js', CClientScript::POS_END);
-//$cs->registerCssFile($this->module->assetsUrl. '/css/mixitup/style.css');
+*/
 ?>
 <div class="modal fade" id="proposerloiForm" tabindex="-1" role="dialog" aria-labelledby="proposerloiFormLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -37,6 +38,7 @@ $cs->registerScriptFile(Yii::app()->getModule('githubs')->assetsUrl. '/wysihtml5
 </div>
 <script type="text/javascript">
 initT['proposerloiModalsInit'] = function(){
+
     $("#saveEntryForm").submit( function(event){
       //log($(this).serialize());
       event.preventDefault();

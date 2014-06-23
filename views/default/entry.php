@@ -1,5 +1,9 @@
 <?php 
-echo $survey["message"];
+$regex = '#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#';
+echo preg_replace_callback($regex, function ($matches) {
+    return "<a href=\'{$matches[0]}\'>{$matches[0]}</a>";
+}, $survey["message"]);
+
 ?>
 <br/>
 <?php 
@@ -17,3 +21,4 @@ if(isset( Yii::app()->session["userId"]) && Yii::app()->session["userEmail"] != 
 	<br/><a class="btn" onclick="entryDetail('<?php echo Yii::app()->createUrl("/survey/default/entry/surveyId/".(string)$survey["_id"])?>','edit')" href="javascript:;"><i class='fa fa-pencil' ></i> Editer votre loi</a>
 
 <?php } ?>
+
