@@ -220,12 +220,9 @@ $commentActive = true;
     ?>
 <div class="controls" style="border-radius: 8px;">
   <?php if(!isset($_GET["cp"]) && $where["type"]=="survey"){?> 
-  <label>Géographique:</label>
+  <label>Géographique : </label>
   <?php echo $cpBlock; 
   }?>
-
-  
- 
   <br/>
   <label>Filtre:</label>
 
@@ -238,12 +235,12 @@ $commentActive = true;
   <?php echo $tagBlock?>
 
   <br/>
-  <?php if(!isset($_GET["cp"]) && $where["type"]=="survey"){?>
-  <label>Participation:</label>
+  <?php if( $logguedAndValid && $where["type"]=="entry" ) { ?>
+  <label>Participation : </label>
   <button class="sort " data-sort="vote:asc">Asc</button>
   <button class="sort " data-sort="vote:desc">Desc</button>
   <?php } ?>
-  <label>Chronologique:</label>
+  <label>Chronologique : </label>
   <button class="sort " data-sort="time:asc">Asc</button>
   <button class="sort " data-sort="time:desc">Desc</button>
   <label>Affichage:</label>

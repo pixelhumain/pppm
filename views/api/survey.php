@@ -73,7 +73,7 @@
 					    	   "message":$("#entryaddEntry").val(),
 					    	   "cp" : $("#postalcodesaveGroup").val() , 
 					    	   "type" : "entry",
-					    		"app" : "survey"};
+					    	   "app" : "survey"};
 					testitpost("addEntryResult",baseUrl+'/<?php echo $this::$moduleKey?>/api/saveSession',params);
 				}
 				function getEntry(){

@@ -37,8 +37,11 @@ class ApiController extends Controller {
             array('label' => "Administration", "key"=>"admin", "iconClass"=>"fa fa-cog", 
                 "children"=> array(
                     array( "label"=>"Moderation Settings","href"=>"javascript:;","onclick"=>"scrollTo('#blockModerationSettings')"),
-                    array( "label"=>"Get Entries to Moderate","href"=>"javascript:;","onclick"=>"scrollTo('#blockall2Moderate')"),
+                    array( "label"=>"Add an admin","href"=>"javascript:;","onclick"=>"scrollTo('#blockaddAdmin')"),
                     array( "label"=>"Moderate an entry","href"=>"javascript:;","onclick"=>"scrollTo('#blockModerate')"),
+                    array( "label"=>"Delete a Survey","href"=>"javascript:;","onclick"=>"scrollTo('#blockdeleteSurvey')"),
+                    array( "label"=>"Delete a Entry","href"=>"javascript:;","onclick"=>"scrollTo('#blockdeleteEntry')"),
+                    array( "label"=>"Delete a User","href"=>"javascript:;","onclick"=>"scrollTo('#blockdeleteUser')"),
                 )),
             array('label' => "Administration PH", "key"=>"adminPH", "iconClass"=>"fa fa-cogs", 
                 "children"=> array(
@@ -73,8 +76,12 @@ class ApiController extends Controller {
 
             'savesession'       => 'application.controllers.survey.SaveSessionAction',  
             'moderateentry'     => 'application.controllers.survey.ModerateAction',  
+            'deletesurvey'     => 'application.controllers.survey.DeleteAction',  
+
             'getby'             => 'application.controllers.generic.GetByAction',  
             'sendmessage'       => 'application.controllers.messages.SendMessageAction',  
+
+            'addappadmin'       => 'application.controllers.applications.AddAppAdminAction',  
         );
     }
 }
