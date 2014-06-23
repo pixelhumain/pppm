@@ -12,7 +12,7 @@ $commentActive = true;
 ?>
 
 <style type="text/css">
-  body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/<?php  echo (PH::notlocalServer()) ? 'frings.jpg' : 'fond-eau.jpg'?>") repeat;}
+  body {background: url("<?php echo Yii::app()->theme->baseUrl;?>/img/<?php  echo (PH::notlocalServer()) ? 'fond-eau.jpg' : 'cloud.jpg'?>") repeat;}
   .connect{border-radius: 8px; opacity: 0.9;background-color: #182129; margin-bottom: 10px;border:1px solid #3399FF;width: 100%;padding: 10px }
   button.filter,button.sort{color:#000;}
   a.btn{margin:3px;}
@@ -40,7 +40,7 @@ $commentActive = true;
     <div style="color:#3399FF;float:left;font-size: x-large;font-weight: bold">
       <?php 
       $logguedAndValid = ( isset( Yii::app()->session["userId"]) && !isset($user["tobeactivated"]) ) ;
-      echo "<a href='".Yii::app()->createUrl($this->module->id)."'>".$this::moduleTitle."</a> : <a href='".Yii::app()->createUrl($this->module->id)."'>".$title."</a>";
+      echo "<a href='".Yii::app()->createUrl($this->module->id)."'>".$this::moduleTitle."</a> ";
        if(isset($_GET["cp"])) echo " ".$_GET["cp"]?>
        <div style="font-size:x-small;font-weight: normal;color:white;">Nombres de votants inscrit : <?php echo $uniqueVoters?></div>
     </div>
