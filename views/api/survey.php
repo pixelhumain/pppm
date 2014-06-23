@@ -9,7 +9,7 @@
 		</div>
 		<div class="apiForm saveSession">
 			name : <input type="text" name="namesaveSession" id="namesaveSession" value="<?php echo $this::$moduleKey?>1" /><br/>
-			admin email* : <input type="text" name="emailsaveSession" id="emailsaveSession" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /><br/>
+			admin email* : <input type="text" name="emailsaveSession" id="emailsaveSession" value="magninpierre@wanadoo.fr" /><br/>
 			tags : <input type="text" name="tagssaveSession" id="tagssaveSession" value="lois,anonymat,vote" placeholder="ex:social,solidaire...etc"/>(comma seperated)<br/>
 			scope* : cp ou quartier : <input type="text" name="postalcodesaveSession" id="postalcodesaveSession" value="97421" />(comma seperated)<br/>
 				
@@ -60,7 +60,7 @@
 			name : <input type="text" name="nameaddEntry" id="nameaddEntry" value="test1" /><br/>
 			message  : <textarea name="entryaddEntry" id="entryaddEntry">this is test, can contain links</textarea> <br/>
 			tags : <input type="text" name="tagsaddEntry" id="tagsaddEntry" value="" placeholder="ex:social,solidaire...etc"/>(comma seperated)<br/>
-			admin email* : <input type="text" name="emailaddEntry" id="emailaddEntry" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com" /><br/>
+			admin email* : <input type="text" name="emailaddEntry" id="emailaddEntry" value="magninpierre@wanadoo.fr" /><br/>
 			<a href="javascript:addEntry()">Test it</a><br/>
 			<a href="javascript:getEntry()">Get it</a><br/>
 			<div id="addEntryResult" class="result fss"></div>
@@ -161,7 +161,7 @@
 				}
 				?>
 			</select><br/>
-			email : <input type="text" name="addactionemail" id="addactionemail" value="<?php echo $this::$moduleKey?>@<?php echo $this::$moduleKey?>.com"/><br/>
+			email : <input type="text" name="addactionemail" id="addactionemail" value="magninpierre@wanadoo.fr"/><br/>
 			<a href="javascript:addaction()">Add Action</a><br/>
 			<a href="javascript:unaddaction()">Remove Action</a><br/>
 			<a href="javascript:getIncByAction()">Get Element Increment Value</a><br/>

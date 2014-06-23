@@ -256,7 +256,7 @@ $commentActive = true;
   <?php if( $logguedAndValid && $where["type"]=="entry"){?>
   <a class="filter btn" data-filter=".avoter">A voter</a>
   <a class="filter btn" data-filter=".mesvotes">Mes votes</a>
-  <a class="filter btn" data-filter=".myentries">Mes lois</a>
+  <a class="filter btn" data-filter=".myentries">Mes propositions</a>
   <?php } ?>
   
   <?php echo $tagBlock?>
