@@ -78,7 +78,7 @@ $commentActive = true;
     {
       $name = $value["name"];
       $email =  (isset($value["email"])) ? $value["email"] : "";
-      $cpList = (isset($value["cp"])) ? $value["cp"] : "";; 
+      $cpList = (isset($value["cp"])) ? $value["cp"] : "";
       if( !isset($_GET["cp"]) && $value["type"]=="survey" )
       {
         if(is_array($value["cp"]))
