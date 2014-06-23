@@ -1,7 +1,7 @@
 <?php 
 $regex = '#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#';
 echo preg_replace_callback($regex, function ($matches) {
-    return "<a href=\'{$matches[0]}\'>{$matches[0]}</a>";
+    return "<a target='_blank' href='{$matches[0]}'>{$matches[0]}</a>";
 }, $survey["message"]);
 
 ?>

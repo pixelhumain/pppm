@@ -78,7 +78,7 @@ $commentActive = true;
     {
       $name = $value["name"];
       $email =  (isset($value["email"])) ? $value["email"] : "";
-      $cpList = $value["cp"] ; 
+      $cpList = (isset($value["cp"])) ? $value["cp"] : "";; 
       if( !isset($_GET["cp"]) && $value["type"]=="survey" )
       {
         if(is_array($value["cp"]))
@@ -232,22 +232,8 @@ $commentActive = true;
     }
     ?>
 <div class="controls" style="border-radius: 8px;">
-  <?php if(!isset($_GET["cp"]) && $where["type"]=="survey"){?> 
-  <label>Géographique : </label>
-  <?php echo $cpBlock; 
-  }?>
-  <br/>
-  <label>Filtre:</label>
-
-  <?php if( $logguedAndValid && $where["type"]=="entry"){?>
-  <a class="filter btn" data-filter=".avoter">A voter</a>
-  <a class="filter btn" data-filter=".mesvotes">Mes votes</a>
-  <a class="filter btn" data-filter=".myentries">Mes lois</a>
-  <?php } ?>
-  <button class="filter " data-filter="all">Tout</button>
-  <?php echo $tagBlock?>
-
-  <br/>
+  <button class="filter btn fr" data-filter="all">Tout</button>
+  
   <?php if( $logguedAndValid && $where["type"]=="entry" ) { ?>
   <label>Participation : </label>
   <button class="sort " data-sort="vote:asc">Asc</button>
@@ -258,6 +244,23 @@ $commentActive = true;
   <button class="sort " data-sort="time:desc">Desc</button>
   <label>Affichage:</label>
   <button id="ChangeLayout"><i class="fa fa-reorder"></i></button>
+  <br/>
+
+  <?php if(!isset($_GET["cp"]) && $where["type"]=="survey"){?> 
+  <label>Géographique : </label>
+  <?php echo $cpBlock; 
+  }?>
+  <br/>
+
+  <label>Filtre:</label>
+  <?php if( $logguedAndValid && $where["type"]=="entry"){?>
+  <a class="filter btn" data-filter=".avoter">A voter</a>
+  <a class="filter btn" data-filter=".mesvotes">Mes votes</a>
+  <a class="filter btn" data-filter=".myentries">Mes lois</a>
+  <?php } ?>
+  
+  <?php echo $tagBlock?>
+
 </div>
 
 <div id="mixcontainer" class="mixcontainer">
