@@ -33,6 +33,7 @@ $commentActive = true;
   .step{ background-color: #182129;  opacity: 0.9;}
   .taglist{width: 255px;display: inline;background-color:#3490EC;color:#000;padding: 3px 5px;height: 28px; }
 </style>
+
 <section class="mt80 stepContainer">
   <div class=" home ">
   
@@ -276,23 +277,6 @@ var layout = 'grid', // Store the current layout as a variable
 $container = $('#mixcontainer'), // Cache the MixItUp container
 $changeLayout = $('#ChangeLayout'); // Cache the changeLayout button
 
-$(function(){
-    NProgress.start();
-    $container.mixItUp({
-        load: {sort: 'vote:desc'},
-        animation: {
-          animateChangeLayout: true, // Animate the positions of targets as the layout changes
-          animateResizeTargets: true, // Animate the width/height of targets as the layout changes
-          effects: 'fade rotateX(-40deg) translateZ(-100px)'
-        },
-        layout: {
-          containerClass: 'grid' // Add the class 'list' to the container on load
-        }
-      });
-    NProgress.done();
-    moduleWording();
-});
-
   $changeLayout.on('click', function(){
     
     // If the current layout is a list, change to grid:
@@ -388,6 +372,24 @@ $(function(){
                                   "<br/>Si vous êtes déja inscrit , connectez vous avec votre email d'inscription.");
       $(".loginFormToptxt2").html("Si vous n'avez pas de compte ce même formulaire vous créera un compte, sinon vous logguera.");
     }
+
+$(function(){
+  NProgress.start();
+  $container.mixItUp({
+      load: {sort: 'vote:desc'},
+      animation: {
+        animateChangeLayout: true, // Animate the positions of targets as the layout changes
+        animateResizeTargets: true, // Animate the width/height of targets as the layout changes
+        effects: 'fade rotateX(-40deg) translateZ(-100px)'
+      },
+      layout: {
+        containerClass: 'grid' // Add the class 'list' to the container on load
+      }
+    });
+  NProgress.done();
+  moduleWording();
+});
+
 </script>
 <?php
 if($where["type"]=="entry"){
@@ -398,3 +400,5 @@ if($where["type"]=="entry"){
     $this->renderPartial(Yii::app()->params["modulePath"].$this->module->id.'.views.default.modals.comments');
 }
 ?>
+
+

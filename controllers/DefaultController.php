@@ -118,5 +118,9 @@ class DefaultController extends Controller {
                                                                                   ), 
                                                                   true)));
   }
-  
+  public function actionProposer() 
+  {
+    Yii::app()->theme  = "empty";
+    $this->render( "textarea" );
+  }
 }
