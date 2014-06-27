@@ -16,12 +16,11 @@ class ApiController extends Controller {
     public function actions()
     {
         //build api context
-        array_push($this->sidebar1, array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggle('scenario')","hide"=>true, "iconClass"=>"fa fa-list","generate"=>true));
-        array_push($this->sidebar1, Api::$userMap);
-        array_push($this->sidebar1, Api::$surveyMap);
-        array_push($this->sidebar1, Api::$adminMap);
-        array_push($this->sidebar1, Api::$adminPHMap);
-        array_push($this->sidebar1, Api::$communicatoinMap);
+        array_push($this->sidebar1, Api::getUserMap());
+        array_push($this->sidebar1, Api::getSurveyMap());
+        array_push($this->sidebar1, Api::getAdminMap());
+        array_push($this->sidebar1, Api::getAdminPHMap());
+        array_push($this->sidebar1, Api::getCommunicatoinMap());
         array_push($this->sidebar1, array('label' => "All Modules", "key"=>"modules","iconClass"=>"fa fa-th", "menuOnly"=>true,"children"=>PH::buildMenuChildren("applications") ));
         
         $actions = array(
