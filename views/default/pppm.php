@@ -2,9 +2,9 @@
 $cs = Yii::app()->getClientScript();
 $cs->registerCssFile($this->module->assetsUrl. '/css/mixitup/reset.css');
 $cs->registerCssFile($this->module->assetsUrl. '/css/mixitup/style.css');
-$cs->registerScriptFile('http://code.highcharts.com/highcharts.js' , CClientScript::POS_END);
-$cs->registerScriptFile('http://code.highcharts.com/modules/exporting.js' , CClientScript::POS_END);
-$cs->registerScriptFile('http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.5' , CClientScript::POS_END);
+$cs->registerScriptFile($this->module->assetsUrl. '/js/highcharts.js' , CClientScript::POS_END);
+$cs->registerScriptFile($this->module->assetsUrl. '/js/exporting.js' , CClientScript::POS_END);
+$cs->registerScriptFile($this->module->assetsUrl. '/js/jquery.mixitup.min.js' , CClientScript::POS_END);
 $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/api.js' , CClientScript::POS_END);
 $this->pageTitle=$this::moduleTitle;
 

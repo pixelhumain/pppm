@@ -5,6 +5,12 @@ echo preg_replace_callback($regex, function ($matches) {
 }, $survey["message"]);
 
 ?>
+<br/><br/>
+<?php if(isset( $survey["urls"])){
+	echo "Url(s) de référence(s) : <br/>";
+	foreach ($survey["urls"] as $u) {
+		echo "<a href='".$u."' target='_blank'>".$u."</a><br/>";
+ }} ?>
 <br/>
 <?php 
 if(isset( Yii::app()->session["userId"])){

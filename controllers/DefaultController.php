@@ -22,6 +22,8 @@ class DefaultController extends Controller {
         array('label' => "Qui", "key"=>"who","href"=>"javascript:;","onclick"=>"hideShow('.who')"),
         array('label' => "Quand", "key"=>"when","href"=>"javascript:;","onclick"=>"hideShow('.when')"),*/
     );
+    public $footer = '.views.default.footer';
+
     //login social setting 
     public $hasSocial = false;
     public $loginRegister = true;
@@ -118,9 +120,19 @@ class DefaultController extends Controller {
                                                                                   ), 
                                                                   true)));
   }
-  public function actionProposer() 
+  public function actionTextarea() 
   {
     Yii::app()->theme  = "empty";
     $this->render( "textarea" );
+  }
+  public function actionEditList() 
+  {
+    Yii::app()->theme  = "empty";
+    $this->render( "editList" );
+  }
+  public function actionMultiAdd() 
+  {
+    Yii::app()->theme  = "empty";
+    $this->render( "multiadd" );
   }
 }

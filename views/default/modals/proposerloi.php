@@ -1,10 +1,3 @@
-<?php 
-/*$cs = Yii::app()->getClientScript();
-//$cs->registerCssFile(Yii::app()->getModule('githubs')->assetsUrl. '/wysihtml5/css/stylesheet.css');
-$cs->registerScriptFile(Yii::app()->getModule('githubs')->assetsUrl. '/wysihtml5/advanced.js', CClientScript::POS_END);
-$cs->registerScriptFile(Yii::app()->getModule('githubs')->assetsUrl. '/wysihtml5/wysihtml5-0.4.0pre.min.js', CClientScript::POS_END);
-*/
-?>
 <div class="modal fade" id="proposerloiForm" tabindex="-1" role="dialog" aria-labelledby="proposerloiFormLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -17,11 +10,20 @@ $cs->registerScriptFile(Yii::app()->getModule('githubs')->assetsUrl. '/wysihtml5
           député ou pour laquelle vous souhaiteriez un vote de vos concitoyens. </p>
         <br/>
         <form id="saveEntryForm" action="">
+        
           Titre de la proposition<br/>
-        <input type="text" name="nameaddEntry" id="nameaddEntry" width=200 maxlength=100 value="" placeholder="100 caract. max." />
-        <br/><br/>
-        Texte de la proposition<br/>
-        <textarea id="message" style="width:100%;height:30px;vertical-align: middle" onkeyup="AutoGrowTextArea(this);$('#message1').val($('#message').val())"></textarea>
+          <input type="text" name="nameaddEntry" id="nameaddEntry" width=200 maxlength=100 value="" placeholder="100 caract. max." />
+          <br/><br/>
+          
+          Texte de la proposition<br/>
+          <textarea id="message" style="width:100%;height:30px;vertical-align: middle" onkeyup="AutoGrowTextArea(this);$('#message1').val($('#message').val())"></textarea>
+          <br/><br/>
+
+          Urls de réferences (taper entrée pour en ajouter a volonté)
+          <div class="inputs"> 
+          <div><input type="text" name="urls[]" class="addmultifield" value="" placeholder="http://exemple.com"/></div> 
+          </div>
+          <a href="javascript:;" id="add"><i class=" fa fa-plus-circle" style="font-size: 1.5em"></i></a> | <a href="javascript:;" id="remove"><i class=" fa fa-minus-circle" style="font-size: 1.5em"></i></a>  | <a href="javascript:;" id="reset"><i class=" fa fa-recycle"  style="font-size: 1.5em"></i></a>  
         </form>
         <div style="clear:both"></div>
       </div>
@@ -66,9 +68,10 @@ initT['proposerloiModalsInit'] = function(){
                    "message":$("#message").val(),
                    "cp" : "<?php echo $survey['cp']?>" , 
                    "type" : "entry",
+                   "urls" : getUrls(),
                    "app":"<?php echo $this->module->id?>"
                 };
-
+       console.dir(params);
        $.ajax({
           type: "POST",
           url: '<?php echo Yii::app()->createUrl($this->module->id."/api/saveSession")?>',
@@ -89,11 +92,46 @@ initT['proposerloiModalsInit'] = function(){
       alert("mauvaise réponse, etes vous humain ?");
     });
   
-    
+    $('#add').click( function(){ addfield() } );
+    function addfield() {
+        $('<div><input type="text" class="addmultifield" name="urls[]" value="" /></div>').fadeIn('slow').appendTo('.inputs');
+        $('.addmultifield:last').focus();
+        initMultiFileds();
+    }
+    $('#remove').click(function() {
+    if($('.addmultifield').length > 1) {
+        $('.addmultifield:last').remove();
+    }
+    });
+ 
+    $('#reset').click(function() {
+    while($('.addmultifield').length > 1) {
+        $('.addmultifield:last').remove();
+    }
+    });
+ 
+    // here's our click function for when the forms submitted
+    function getUrls(){
+        var urls = [];
+        $.each($('.addmultifield'), function() {
+            urls.push( $(this).val() );
+        });
+        return urls;
+    };
+
+    function initMultiFileds(){
+      $('.addmultifield').keydown(function(event) {
+          if ( event.keyCode == 13)
+            addfield();
+      });
+    }
+    initMultiFileds();
 };
+
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 function getHashTagList(mystr){
   var strT = mystr.split(" ");
   hashtags = "";

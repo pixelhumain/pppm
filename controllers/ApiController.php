@@ -14,14 +14,15 @@ class ApiController extends Controller {
     
     public $sidebar1 = array(
             array('label' => "Scenario", "key"=>"scenario","onclick"=>"toggle('scenario')","hide"=>true, "iconClass"=>"fa fa-list","generate"=>true),
-            array('label' => "User", "key"=>"user", "iconClass"=>"fa fa-user", 
+            array('label' => "User", "key"=>"user", "iconClass"=>"fa fa-user","generate"=>true,
                 "children"=> array(
-                    array( "label"=>"Login","href"=>"javascript:;","onclick"=>"scrollTo('#blockLogin')",),
-                    array( "label"=>"Save User","href"=>"javascript:;","onclick"=>"scrollTo('#blockSaveUser')"),
-                    array( "label"=>"Get User","href"=>"javascript:;","onclick"=>"scrollTo('#blockGetUser')"),
-                    array( "label"=>"ConfirmUserRegistration","href"=>"javascript:;","onclick"=>"scrollTo('#blockGetUser')"),
-                    array( "label"=>"GetPeople","href"=>"javascript:;","onclick"=>"scrollTo('#blockgetPeople')"),
-                    array( "label"=>"InvitePeople","href"=>"javascript:;","onclick"=>"scrollTo('#blockinviteUser')")
+                    array( "label"=>"se Communecter", "key"=>"communect"),
+                    array( "label"=>"Login", "key"=>"login"),
+                    array( "label"=>"Save User", "key"=>"saveUser"),
+                    array( "label"=>"Get User", "key"=>"getUser"),
+                    array( "label"=>"ConfirmUserRegistration"),
+                    array( "label"=>"GetPeople","key"=>"getPeople"),
+                    array( "label"=>"InvitePeople", "key"=>"inviteUser")
                 )),
             array('label' => "Survey", "key"=>"survey", "iconClass"=>"fa fa-thumbs-up", 
                 "children"=> array(
